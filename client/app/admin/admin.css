@@ -17,3 +17,12 @@
 	align-items: center;
 	text-decoration: none;
 }
+.help-block
+{
+	color: red;
+	font-size: 14px;
+}
+
+.glyphicon-calendar:before {
+  content: "\d83d\dcc5";
+}

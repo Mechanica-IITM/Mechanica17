@@ -1,6 +1,7 @@
 <div class="container">
   <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
   <h6 ng-click="populateTeams()"><u>Clik this to Populate Houses. Click only if there are no houses in DB.</u><h6>
+
   <ul class="list-group user-list">
     <li class="list-group-item" ng-repeat="user in admin.users">
 	    <div class="user-info">
@@ -10,4 +11,58 @@
         <a ng-click="admin.delete(user)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
     </li>
   </ul>
+  <br><br>
+<button type="button" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed">Click to create event</button>
+  <hr>
+  <div uib-collapse="isCollapsed">
+    
+<form name="eventForm" novalidate ng-submit="eventSubmit(eventForm)">
+
+<div class="form-group">
+  <label>Event Name</label>
+    <input type="text" name="name" ng-model="name" class="form-control" required>
+  <label class="help-block" ng-show="eventForm.name.$error.required &&submitted">
+   Please enter event name
+  </label>
+  
+</div>  
+
+<div class="form-group">
+  <label>Venue</label>
+    <input type="text" name="venue" ng-model="venue" class="form-control" required>
+  <label class="help-block" ng-show="eventForm.venue.$error.required &&submitted">
+   Please enter venue
+  </label>
+</div>  
+
+<div class="form-group">
+  <label>Info</label>
+    <textarea name="info" ng-model="info" class="form-control" required rows="3"></textarea>
+  <label class="help-block" ng-show="eventForm.info.$error.required &&submitted">
+   Please enter event info
+  </label>
+</div>  
+<div class="form-group">
+  <label>Date</label>
+    <input type="text" class="form-control" uib-datepicker-popup datepicker-options="dateOptions" ng-model="date" is-open="dateOpen" required close-text="Close" name="date" />
+     <span class="input-group">
+            <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+  <label class="help-block" ng-show="eventForm.date.$error.required &&submitted">
+   Please select date
+  </label>  
+          
+</div>          
+
+<div class="form-group">
+  <label>Time</label>
+     <div uib-timepicker name="time" ng-model="mytime" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="ismeridian" required></div>
+  <label class="help-block" ng-show="eventForm.time.$error.required &&submitted">
+   Please select time
+  </label>  
+</div>
+
+<button type="submit" class="btn btn-info">Add Event</button>
+</form>
+</div>
 </div>

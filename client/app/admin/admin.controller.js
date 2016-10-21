@@ -17,6 +17,23 @@ export default class AdminController {
         })
       },10000,4)
     }
+     $scope.submitted=false;
+     $scope.isCollapsed=true;
+     $scope.dateOpen=false;
+     $scope.ismeridian=true;
+
+    $scope.eventSubmit=function(form){
+      $scope.submitted=true;
+      if(form.$valid)
+      {
+
+      }
+    };
+
+    $scope.open=function(){
+      $scope.dateOpen=true;
+    }
+    
   }
 
   delete(user) {
