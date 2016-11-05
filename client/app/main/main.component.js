@@ -5,13 +5,14 @@ import routing from './main.routes';
 export class MainController {
 
   /*@ngInject*/
-  constructor($http, $scope, socket) {
+  constructor($http, $scope, socket,Auth) {
     this.$http = $http;
     this.socket = socket;
-
+    this.isLoggedIn = Auth.isLoggedInSync;
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
     });
+
   }
 
   $onInit() {
@@ -20,6 +21,13 @@ export class MainController {
         this.awesomeThings = response.data;
         this.socket.syncUpdates('thing', this.awesomeThings);
       });
+
+    this.$http.get('/api/meaEvents')
+      .then(response => {
+        this.events = response.data;
+        this.socket.syncUpdates('event', this.events);
+      });
+
   }
 
   addThing() {
@@ -34,6 +42,13 @@ export class MainController {
   deleteThing(thing) {
     this.$http.delete('/api/things/' + thing._id);
   }
+
+  registerEvent(event)
+  {
+    this.$http.put('/api/houses'+event._id);
+
+  }
+
 }
 
 export default angular.module('mechanicaApp.main', [ngRoute])

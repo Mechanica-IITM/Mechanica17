@@ -2,7 +2,7 @@
 
 export default class AdminController {
   /*@ngInject*/
-  constructor(User, $http, $scope, $interval) {
+  constructor(User, $http, $scope, $interval,$location) {
     // Use the User $resource to fetch all users
     this.users = User.query();
     $http.get('api/houses/').then(function(response){
@@ -14,6 +14,8 @@ export default class AdminController {
         $http.post('api/houses/'+i).then(function(response){
         	console.log(response);
           i++;
+        }).then(function(err){
+          console.log(err);
         })
       },10000,4)
     }
@@ -21,12 +23,26 @@ export default class AdminController {
      $scope.isCollapsed=true;
      $scope.dateOpen=false;
      $scope.ismeridian=true;
+     
 
-    $scope.eventSubmit=function(form){
+     $scope.eventSubmit=function(form){
       $scope.submitted=true;
       if(form.$valid)
       {
+        $http.post('/api/meaEvents',
+          { 
+            name:$scope.name,
+            venue:$scope.venue,
+            info:$scope.info,
+            date:$scope.date
+          }
+        ).then(function(response){
+          $location.path('/');
 
+        }).then(function(err){
+          console.log(err);
+        })
+      
       }
     };
 
