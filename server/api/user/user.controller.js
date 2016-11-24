@@ -122,13 +122,18 @@ export function register(req, res) {
   if(req.body._id) {
     delete req.body._id;
   }
-  return User.findOneAndUpdate(req.params.id,{$set:{meaEvents.push(req.body,0)}}, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
-
+  return User.findOneAndUpdate(req.params.id,{$set:{meaEvents:meaEvents.push(req.body,0)}}, {upsert: true, setDefaultsOnInsert: true}).exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 
-  return House.findOneAndUpdate(req.params.id,{$set:{meaEvents.push(req.body,0)}}, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
+  User.findById(req.params.id).exec()
+    .then(user => {
+      var house_name=user.house
+    });
 
+  
+
+  return House.findOneAndUpdate({name:house_name},{$set:{meaEvents:meaEvents.push(req.body,0)}}, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
     

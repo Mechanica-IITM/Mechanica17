@@ -99,7 +99,8 @@ export function create(req, res) {
       phoneNumber: form[i].commanderPh,
       rollNumber: form[i].commanderRoll,
       email: commanderEmail,
-      password: randomString(8, 'abcdefghijklmnopqrstuvwxyz')  
+      password: randomString(8, 'abcdefghijklmnopqrstuvwxyz'),
+      house:form[i].House_Name
     })
     .then(function(response){
       house.team.push(response._id);
@@ -124,7 +125,8 @@ export function addNextMem(j,i, house){
       name: form[i][property],
       rollNumber: form[i][property],
       email: email,
-      password: randomString(8, 'abcdefghijklmnopqrstuvwxyz')  
+      password: randomString(8, 'abcdefghijklmnopqrstuvwxyz'),
+      house:form[i].House_Name  
     })
     .then(function(response){
       house.team.push(response._id);

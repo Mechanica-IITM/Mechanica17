@@ -45,7 +45,7 @@ export class MainController {
 
   registerEvent(event)
   {
-    this.$http.put('/api/houses'+event._id);
+    this.$http.put('/api/users/register');
 
   }
 
