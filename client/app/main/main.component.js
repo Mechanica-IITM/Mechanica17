@@ -45,7 +45,7 @@ export class MainController {
 
   registerEvent(event)
   {
-    this.$http.put('/api/users/register');
+    this.$http.put('/api/users/register',event._id);
 
   }
 
