@@ -21,6 +21,7 @@ export default class AdminController {
     }
      $scope.submitted=false;
      $scope.isCollapsed=true;
+     $scope.isCollapsed1=false;
      $scope.dateOpen=false;
      $scope.ismeridian=true;
      

@@ -1,3 +1,9 @@
+<script src="node_modules/angular-material/angular.js"></script>
+<script src="node_modules/angular-material/angular-animate.js"></script>
+<script src="node_modules/angular-material/angular-aria.js"></script>
+<script src="node_modules/angular-material/angular-messages.js"></script>
+<script src="node_modules/angular-material/angular-material.js"></script>
+
 <div class="container">
   <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
   <h6 ng-click="populateTeams()"><u>Clik this to Populate Houses. Click only if there are no houses in DB.</u><h6>
@@ -12,6 +18,15 @@
     </li>
   </ul>
   <br><br>
+<md-input-container>
+<label>Event</label>
+<md-select>
+<md-option ng-repeat="user in admin.users"></md-option>
+</md-select>
+</md-input-container>
+
+
+
 <button type="button" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed">Click to create event</button>
   <hr>
   <div uib-collapse="isCollapsed">
