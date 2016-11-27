@@ -26,6 +26,12 @@ export default class AdminController {
      $scope.ismeridian=true;
      
 
+    $http.get('/api/meaEvents')
+      .then(response => {
+        this.events = response.data;
+        this.socket.syncUpdates('event', this.events);
+      });
+     
      $scope.eventSubmit=function(form){
       $scope.submitted=true;
       if(form.$valid)

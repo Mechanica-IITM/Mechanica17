@@ -18,16 +18,30 @@
     </li>
   </ul>
   <br><br>
-<md-input-container>
-<label>Event</label>
-<md-select>
-<md-option ng-repeat="user in admin.users"></md-option>
-</md-select>
-</md-input-container>
+ <md-input-container>
+          <label>Event</label>
+          <md-select ng-model="select_event">
+            <md-option ng-repeat="event in admin.events"  ng-value="event.name">
+              {{event.name}}
+            </md-option>
+          </md-select>
+  </md-input-container>
+  <br><br>
 
+<table class="participantTable" ng-show="select_event">
+  <tr>
+    <th>Name</th>
+    <th>House</th>
+ </tr>
+  <tr>
+    <td>Name</td>
+    <td>House</td>
+  </tr>
+</table>
 
+<br><br>
 
-<button type="button" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed">Click to create event</button>
+<md-button type="button" class="md-primary md-raised" ng-click="isCollapsed = !isCollapsed">Click to create event</md-button>
   <hr>
   <div uib-collapse="isCollapsed">
     
