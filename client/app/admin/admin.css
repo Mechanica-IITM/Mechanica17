@@ -26,3 +26,10 @@
 .glyphicon-calendar:before {
   content: "\d83d\dcc5";
 }
+
+.participantTable table,th,td{
+	border:1px solid;
+}
+.participantTable th,td{
+ padding: 10px;
+}

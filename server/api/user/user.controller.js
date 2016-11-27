@@ -1,6 +1,7 @@
 'use strict';
 
 import User from './user.model';
+import House from '../house/house.model';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 
@@ -113,6 +114,32 @@ export function me(req, res, next) {
     })
     .catch(err => next(err));
 }
+/**
+ * Add registered event
+ */
+
+export function register(req, res) {
+  if(req.body._id) {
+    delete req.body._id;
+  }
+  return User.findOneAndUpdate(req.params.id,{$set:{meaEvents:meaEvents.push(req.body,0)}}, {upsert: true, setDefaultsOnInsert: true}).exec()
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+
+  User.findById(req.params.id).exec()
+    .then(user => {
+      var house_name=user.house
+    });
+
+  
+
+  return House.findOneAndUpdate({name:house_name},{$set:{meaEvents:meaEvents.push(req.body,0)}}, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+    
+}
+
+
 
 /**
  * Authentication callback

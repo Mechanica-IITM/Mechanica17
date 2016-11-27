@@ -1,7 +1,8 @@
 'use strict';
 
 import angular from 'angular';
-// import ngAnimate from 'angular-animate';
+import ngAnimate from 'angular-animate';
+import ngAria from 'angular-aria';
 import ngCookies from 'angular-cookies';
 import ngResource from 'angular-resource';
 import ngSanitize from 'angular-sanitize';
@@ -9,6 +10,7 @@ import 'angular-socket-io';
 const ngRoute = require('angular-route');
 
 import uiBootstrap from 'angular-ui-bootstrap';
+import ngMaterial from 'angular-material';
 // import ngMessages from 'angular-messages';
 // import ngValidationMatch from 'angular-validation-match';
 
@@ -30,7 +32,7 @@ import socket from '../components/socket/socket.service';
 import './app.css';
 
 angular.module('mechanicaApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngRoute,
-    uiBootstrap, _Auth, account, admin, navbar, footer, main, constants, socket, util
+    uiBootstrap,ngAnimate,ngAria,_Auth, account,ngMaterial, admin, navbar, footer, main, constants, socket, util
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

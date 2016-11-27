@@ -8,11 +8,9 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in $ctrl.awesomeThings">
-        <li><a href="#" uib-tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="$ctrl.deleteThing(thing)">&times;</button></a></li>
-      </ul>
+    <div ng-repeat="event in $ctrl.events" ng-show="$ctrl.isLoggedIn()">
+    <h4>{{event.name}}</h4>
+     <button type="button" ng-click="$ctrl.registerEvent(event)" class="btn btn-lg btn-warning">Register</button>
     </div>
   </div>
 
