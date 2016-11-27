@@ -50,10 +50,10 @@ describe('House API Router:', function() {
     });
   });
 
-  describe('POST /api/houses', function() {
+  describe('POST /api/houses/:i', function() {
     it('should route to house.controller.create', function() {
       expect(routerStub.post
-        .withArgs('/', 'houseCtrl.create')
+        .withArgs('/:i', 'houseCtrl.create')
         ).to.have.been.calledOnce;
     });
   });

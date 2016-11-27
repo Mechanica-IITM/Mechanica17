@@ -28,10 +28,10 @@ describe('House API:', function() {
     });
   });
 
-  describe('POST /api/houses', function() {
+  describe('POST /api/houses/', function() {
     beforeEach(function(done) {
       request(app)
-        .post('/api/houses')
+        .post('/api/houses/')
         .send({
           name: 'New House',
           info: 'This is the brand new house!!!'

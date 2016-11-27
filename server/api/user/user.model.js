@@ -19,6 +19,7 @@ var UserSchema = new Schema({
       }
     }
   },
+  college: String,
   role: {
     type: String,
     default: 'user'
