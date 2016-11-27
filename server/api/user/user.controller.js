@@ -19,6 +19,16 @@ function handleError(res, statusCode) {
   };
 }
 
+function respondWithResult(res, statusCode) {
+  statusCode = statusCode || 200;
+  return function(entity) {
+    if(entity) {
+      return res.status(statusCode).json(entity);
+    }
+    return null;
+  };
+}
+
 /**
  * Get list of users
  * restriction: 'admin'
@@ -119,24 +129,19 @@ export function me(req, res, next) {
  */
 
 export function register(req, res) {
-  if(req.body._id) {
-    delete req.body._id;
-  }
-  return User.findOneAndUpdate(req.params.id,{$set:{meaEvents:meaEvents.push(req.body,0)}}, {upsert: true, setDefaultsOnInsert: true}).exec()
-    .then(respondWithResult(res))
-    .catch(handleError(res));
 
-  User.findById(req.params.id).exec()
-    .then(user => {
-      var house_name=user.house
-    });
+  // Add event to user
+  return User.findOneAndUpdate({ _id:req.user._id },{$push:{meaEvents:{meaEvent:req.params.eventId,score:0}}}, {upsert: true, setDefaultsOnInsert: true}).exec()
+    .then(function(user){
+
+      // Add event to house
+      return House.findOneAndUpdate({name:user.house},{$push:{meaEvents:{user:req.user._id, meaEvent: req.params.eventId, score:0}}}, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
+      .then(respondWithResult(res))
+      .catch(handleError(res));
+    })
+    .catch(handleError(res));
 
   
-
-  return House.findOneAndUpdate({name:house_name},{$set:{meaEvents:meaEvents.push(req.body,0)}}, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
-    .then(respondWithResult(res))
-    .catch(handleError(res));
-    
 }
 
 
