@@ -12,6 +12,8 @@
 
 import jsonpatch from 'fast-json-patch';
 import MeaEvent from './meaEvent.model';
+import House from '../house/house.model';
+import User from '../user/user.model';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -106,6 +108,26 @@ export function patch(req, res) {
     .then(patchUpdates(req.body))
     .then(respondWithResult(res))
     .catch(handleError(res));
+}
+
+/**
+ * Add registered event
+ */
+
+export function register(req, res) {
+
+  // Add user to event
+  return MeaEvent.findOneAndUpdate({ _id:req.params.eventId },{$push:{users:{user:req.user._id,score:0}}}, {upsert: true, setDefaultsOnInsert: true}).exec()
+    .then(function(event){
+
+      // Add event to house
+      return House.findOneAndUpdate({name:req.user.house},{$push:{meaEvents:{user:req.user._id, meaEvent: event._id, score:0}}}, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
+      .then(respondWithResult(res))
+      .catch(handleError(res));
+    })
+    .catch(handleError(res));
+
+  
 }
 
 // Deletes a MeaEvent from the DB

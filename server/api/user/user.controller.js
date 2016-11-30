@@ -125,28 +125,6 @@ export function me(req, res, next) {
     .catch(err => next(err));
 }
 /**
- * Add registered event
- */
-
-export function register(req, res) {
-
-  // Add event to user
-  return User.findOneAndUpdate({ _id:req.user._id },{$push:{meaEvents:{meaEvent:req.params.eventId,score:0}}}, {upsert: true, setDefaultsOnInsert: true}).exec()
-    .then(function(user){
-
-      // Add event to house
-      return House.findOneAndUpdate({name:user.house},{$push:{meaEvents:{user:req.user._id, meaEvent: req.params.eventId, score:0}}}, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
-      .then(respondWithResult(res))
-      .catch(handleError(res));
-    })
-    .catch(handleError(res));
-
-  
-}
-
-
-
-/**
  * Authentication callback
  */
 export function authCallback(req, res) {

@@ -7,6 +7,7 @@ export class MainController {
   /*@ngInject*/
   constructor($http, $scope, socket,Auth) {
     this.$http = $http;
+    this.$scope=$scope;
     this.socket = socket;
     this.isLoggedIn = Auth.isLoggedInSync;
     $scope.$on('$destroy', function() {
@@ -17,6 +18,7 @@ export class MainController {
 
   $onInit() {
     this.$http.get('/api/things')
+
       .then(response => {
         this.awesomeThings = response.data;
         this.socket.syncUpdates('thing', this.awesomeThings);
@@ -45,8 +47,9 @@ export class MainController {
 
   registerEvent(event)
   {
-    this.$http.put('/api/users/register/'+event._id);
-
+    this.$http.put('/api/meaEvents/register/'+event._id);
+    console.log("Successfully registered");
+    
   }
 
 }

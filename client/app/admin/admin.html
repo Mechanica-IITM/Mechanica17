@@ -21,7 +21,7 @@
  <md-input-container>
           <label>Event</label>
           <md-select ng-model="select_event">
-            <md-option ng-repeat="event in admin.events"  ng-value="event.name">
+            <md-option ng-repeat="event in events"  ng-value="event.name" ng-click="registered(event._id)">
               {{event.name}}
             </md-option>
           </md-select>
@@ -32,10 +32,13 @@
   <tr>
     <th>Name</th>
     <th>House</th>
+    <th>Score</th>
+
  </tr>
   <tr>
     <td>Name</td>
     <td>House</td>
+    <td><input type="number"></td>
   </tr>
 </table>
 
