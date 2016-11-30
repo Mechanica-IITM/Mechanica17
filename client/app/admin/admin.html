@@ -15,12 +15,13 @@
 	        <span class="text-muted">{{user.email}}</span>
 	    </div>
         <a ng-click="admin.delete(user)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
+        <h1>{{user._id}}</h1>
     </li>
   </ul>
   <br><br>
  <md-input-container>
           <label>Event</label>
-          <md-select ng-model="select_event">
+          <md-select ng-model="selectEvent">
             <md-option ng-repeat="event in events"  ng-value="event.name" ng-click="registered(event._id)">
               {{event.name}}
             </md-option>
@@ -28,16 +29,16 @@
   </md-input-container>
   <br><br>
 
-<table class="participantTable" ng-show="select_event">
+<table class="participantTable" ng-show="selectEvent">
   <tr>
     <th>Name</th>
     <th>House</th>
     <th>Score</th>
 
  </tr>
-  <tr>
-    <td>Name</td>
-    <td>House</td>
+  <tr ng-repeat="participant in participants">
+    <td>{{participant.name}}</td>
+    <td>{{participant.house}}</td>
     <td><input type="number"></td>
   </tr>
 </table>

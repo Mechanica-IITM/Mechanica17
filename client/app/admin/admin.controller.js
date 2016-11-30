@@ -24,7 +24,7 @@ export default class AdminController {
      $scope.isCollapsed1=false;
      $scope.dateOpen=false;
      $scope.ismeridian=true;
-     $scope.participants=[];
+     $scope.participantIds=[];
 
     $http.get('/api/meaEvents')
       .then(response => {
@@ -35,10 +35,28 @@ export default class AdminController {
 
       $scope.registered=function(eventId){
         
-     
+        $http.get('/api/meaEvents/'+eventId)
+          .then(response => {
+              $scope.registeredUsers = response.data.users;
 
-      }
-      
+              for(var i in $scope.registeredUsers)
+               {
+                $scope.participantIds.push($scope.registeredUsers[i].user);
+               }
+              
+              for(var j in $scope.participantIds)
+               {
+                $http.get('/api/users/'+$scope.participantIds[j])
+                .then(response => {
+                      $scope.participants = response.data;
+                      console.log($scope.participants);
+                    });
+
+               }
+ 
+            });    
+        }
+
      $scope.eventSubmit=function(form){
       $scope.submitted=true;
       if(form.$valid)
