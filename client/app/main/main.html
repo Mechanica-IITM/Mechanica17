@@ -1,11 +1,84 @@
-<header class="hero-unit" id="banner">
+<!-- <video poster="/assets/images/videoBackground.jpg" id="bgvid" playsinline autoplay muted loop>
+  WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button 
+<source src="/assets/videos/hd0407.mp4" type="video/mp4">
+<!-- <source src="/assets/videos/background.mp4" type="video/mp4"> 
+</video> -->
+<div style="background:black" class="fullW thumbs_wrap">
+  <div class="bgImage fullW" style="height:100vh;min-height:500px;background-image:url(assets/images/background.jpg);position:fixed;opacity:0.3"></div>
+
+  <div style="position:fixed;left:10px;bottom:10px">
+    <img src="assets/images/iitmlogo.png" width="55px"/>
+    <img src="assets/images/mea.png" width="70px" />
+  </div>
+
+  <div style="position:fixed;right:10px;bottom:10px">
+      <a href="https://www.facebook.com/mechanica.iitm" class="cursorp"><img src="assets/images/fb_icon.png" height='30px'/></a>
+      <a href="https://twitter.com/Mechanica_IITM" class="cursorp"><img src="assets/images/twitter_icon.png" height='34px'/></a>
+  </div>
+  <p style="position:fixed;bottom:50px" class="centric colorw fullW"><u>Scroll Down</u></p>
+  <section class="fullW valignOut thumbs_wrap" style="height:100vh;">
+    <div class="centric colorw" style="text-shadow:0px 0px 20px #252525;padding:20px 50px">
+
+      <img src="favicon.ico" class="dp"/>
+      <h1 style="font-size:50px;letter-spacing:-1px">Mechanica 2017</h1>
+      <!-- <h4 style="letter-spacing:-1px">{{$ctrl.listItem}}</h4> -->
+      <p id="waitingAnim">Coming Soon...</p>
+      <p></p>
+            <br/><br/><br/><br/>
+    </div>
+  </section>
+  <section class="fullW bglg padding10 thumbs_wrap" style="height:100vh;">
+    <div class="fullW paddingLR thumbs_wra[">
+      <h2 class="centric colorbl centric">Contact us</h2>
+      <hr/>
+      <div class="fullW thumbs_wrap" ng-repeat="core in $ctrl.cores">
+        <h4 class="centric">{{core.type}}</h4>
+        <div class="fullW thumbs_wrap valignOutMob">
+          <div class="col-sm-4" ng-repeat="profile in core.profile">
+            <regular-card user="profile"></regular-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script type="text/ng-template" id="usercard.html">
+  <md-card md-colors="::{backgroundColor: '{{theme}}-primary-700'}">
+    <md-card-title>
+      <div class="col-xs-3">
+        <img src="assets/images/{{user.name}}.jpg" height="100%"/>
+      </div>
+      <div class="col-xs-9" style="padding:0px 0px 0px 10px">
+        <h5>{{user.name}}</h5>
+        <small>{{user.email}}</small>
+        <small>{{user.phone}}</small>
+      </div>
+    </md-card-title>
+  </md-card>
+</script>
+<script type="text/ng-template" id="regularcard.html">
+  
+  <md-card>
+    <md-card-title>
+      <div class="floatL">
+        <img src="assets/team/{{user.name}}.jpg" class="dp"/>
+      </div>
+      <div class="floatL" style="padding:0px 0px 0px 10px">
+        <h5>{{user.name}}</h5>
+        <small>{{user.email}}</small>
+        <small>{{user.phone}}</small>
+      </div>
+    </md-card-title>
+  </md-card>
+</script>
+<!-- <header class="hero-unit" id="banner">
   <div class="container">
     <h1>'Allo, 'Allo!</h1>
     <p class="lead">Kick-start your next web app with Angular Fullstack</p>
     <img src="assets/images/yeoman.png" alt="I'm Yeoman">
   </div>
-</header>
-
+</header> -->
+<!-- 
 <div class="container">
   <div class="row">
     <div ng-repeat="event in $ctrl.events" ng-show="$ctrl.isLoggedIn()">
@@ -24,4 +97,4 @@
       </span>
     </p>
   </form>
-</div>
+</div> -->

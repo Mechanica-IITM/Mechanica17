@@ -35,6 +35,30 @@ angular.module('mechanicaApp', [ngCookies, ngResource, ngSanitize, 'btford.socke
     uiBootstrap,ngAnimate,ngAria,_Auth, account,ngMaterial, admin, navbar, footer, main, constants, socket, util
   ])
   .config(routeConfig)
+  .directive('userCard', function () {
+    return {
+      restrict: 'E',
+      templateUrl: 'usercard.html',
+      scope: {
+        name: '@',
+        theme: '@'
+      },
+      controller: function ($scope) {
+    'ngInject';
+
+        $scope.theme = $scope.theme || 'default';
+      }
+    }
+  })
+  .directive('regularCard', function () {
+    return {
+      restrict: 'E',
+      templateUrl: 'regularcard.html',
+      scope: {
+        user: '=',
+      }
+    }
+  })
   .run(function($rootScope, $location, Auth) {
     'ngInject';
     // Redirect to login if route requires auth and you're not logged in

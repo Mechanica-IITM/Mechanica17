@@ -2,10 +2,12 @@ import angular from 'angular';
 const ngRoute = require('angular-route');
 import routing from './main.routes';
 
+import Observable from 'rxjs/Rx';
+
 export class MainController {
 
   /*@ngInject*/
-  constructor($http, $scope, socket,Auth) {
+  constructor($http, $scope, socket, Auth) {
     this.$http = $http;
     this.$scope=$scope;
     this.socket = socket;
@@ -13,6 +15,27 @@ export class MainController {
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
     });
+
+    var list = ["Events & Competitions", "Workshops", "Design and Build"];
+    var i = 0;
+    this.listItem = list[i];
+    this.message = 1;
+     // Observable.interval(500)
+     //          .subscribe((x) => {
+     //            this.message++;
+     //          }):
+
+    this.cores = [
+      {
+        type:'Secretary',
+        profile:[{name:'M Vidyadhar', email:'m.vidyadhar95@gmail.com', phone:'9952044531'},
+        {name:'S Chandra vadan', email:'scvchandras@gmail.com', phone:'9884181579'}
+      ]},
+      {
+        type:'Joint Secretary',
+        profile:[{name:'Ankit Jain',email:'bhaiji.ankitjain1993@gmail.com',phone:'9043807215'}]
+      }
+    ];
 
   }
 

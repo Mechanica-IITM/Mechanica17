@@ -1,3 +1,24 @@
+body {
+  margin: 0;
+  background: rgba(0,0,0,0);
+  font-family: 'Montserrat'; 
+}
+video { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+ background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;
+  background-size: cover;
+  transition: 1s opacity;
+}
+
+
 .thing-form {
   margin: 20px 0;
 }
@@ -25,4 +46,23 @@
 
 .navbar-text {
   margin-left: 15px;
+}
+
+#waitingAnim{
+  -webkit-animation: blinkingAnim 1s infinite; /* Chrome, Safari, Opera */ 
+  animation: blinkingAnim 1s infinite;
+}
+
+/* Chrome, Safari, Opera */ 
+@-webkit-keyframes blinkingAnim {
+    0%   {opacity:0}
+    50%  {opacity:1}
+    100%   {opacity:0}
+}
+
+/* Standard syntax */
+@keyframes element {
+     0%   {opacity:0}
+    50%  {opacity:1}
+    100%   {opacity:0}
 }

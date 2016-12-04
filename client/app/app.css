@@ -41,13 +41,13 @@
   padding: 0.2em 0;
 }
 
-
+@import '../../node_modules/angular-material/angular-material.min.css';
 /* Component styles are injected through gulp */
 /* inject:css */
 @import 'admin/admin.css';
 @import 'main/main.css';
+@import '../components/css/commonclasses.css';
 @import '../components/footer/footer.css';
-@import '../../node_modules/angular-material/angular-material.css';
 @import '../components/modal/modal.css';
 @import '../components/oauth-buttons/oauth-buttons.css';
 /* endinject */
