@@ -5,6 +5,12 @@ import mongoose from 'mongoose';
 var EventSchema = new mongoose.Schema({
   name: String,
   info: String,
+  startTime: Date,
+  endTime: Date,
+  awards: String,
+  faq: String,
+  rules: String,
+  attachment: String,
   active: Boolean
 });
 

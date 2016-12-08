@@ -42,20 +42,6 @@
     </div>
   </section>
 </div>
-<script type="text/ng-template" id="usercard.html">
-  <md-card md-colors="::{backgroundColor: '{{theme}}-primary-700'}">
-    <md-card-title>
-      <div class="col-xs-3">
-        <img src="assets/images/{{user.name}}.jpg" height="100%"/>
-      </div>
-      <div class="col-xs-9" style="padding:0px 0px 0px 10px">
-        <h5>{{user.name}}</h5>
-        <small>{{user.email}}</small>
-        <small>{{user.phone}}</small>
-      </div>
-    </md-card-title>
-  </md-card>
-</script>
 <script type="text/ng-template" id="regularcard.html">
   
   <md-card>
@@ -65,8 +51,8 @@
       </div>
       <div class="floatL" style="padding:0px 0px 0px 10px">
         <h5>{{user.name}}</h5>
-        <small>{{user.email}}</small>
-        <small>{{user.phone}}</small>
+        <p style="font-size:12px;margin-bottom:5px">{{user.email}}</p>
+        <p style="font-size:12px;margin-bottom:5px">{{user.phone}}</p>
       </div>
     </md-card-title>
   </md-card>
