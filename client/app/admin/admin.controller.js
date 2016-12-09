@@ -20,8 +20,11 @@ export default class AdminController {
       },10000,4)
     }
      $scope.submitted=false;
+     $scope.submitted1=false;
      $scope.isCollapsed=true;
      $scope.isCollapsed1=false;
+     $scope.isCollapsed2=true;
+     $scope.isCollapsed3=true;
      $scope.dateOpen=false;
      $scope.ismeridian=true;
      $scope.participantIds=[];
@@ -29,6 +32,12 @@ export default class AdminController {
     $http.get('/api/meaEvents')
       .then(response => {
         $scope.events = response.data;
+
+      });
+     
+    $http.get('/api/eventCategorys')
+      .then(response => {
+        $scope.eventCategories = response.data;
 
       });
       
@@ -61,12 +70,34 @@ export default class AdminController {
       $scope.submitted=true;
       if(form.$valid)
       {
-        $http.post('/api/meaEvents',
+        $http.post('/api/events',
           { 
             name:$scope.name,
-            venue:$scope.venue,
             info:$scope.info,
-            date:$scope.date
+            awards:$scope.awards,
+            faq:$scope.faq,
+            rules:$scope.rules            
+          }
+        ).then(function(response){
+          $location.path('/');
+
+        }).then(function(err){
+          console.log(err);
+        })
+      
+      }
+    };
+    
+    $scope.meaEventSubmit=function(form){
+      $scope.submitted=true;
+      if(form.$valid)
+      {
+        $http.post('/api/meaEvents',
+          { 
+            name:$scope.meaName,
+            venue:$scope.meaVenue,
+            info:$scope.meaInfo,
+            date:$scope.meaDate
           }
         ).then(function(response){
           $location.path('/');
@@ -78,9 +109,25 @@ export default class AdminController {
       }
     };
 
-    $scope.open=function(){
-      $scope.dateOpen=true;
-    }
+    $scope.eventCategorySubmit=function(form){
+      $scope.submitted1=true;
+      if(form.$valid)
+      {
+        $http.post('/api/eventCategorys',
+          { 
+            name:$scope.CategoryName,
+            info:$scope.CategoryInfo
+          }
+        ).then(function(response){
+          $location.path('/');
+
+        }).then(function(err){
+          console.log(err);
+        })
+      
+      }
+    };
+
     
   }
 

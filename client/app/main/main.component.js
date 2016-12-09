@@ -2,7 +2,7 @@ import angular from 'angular';
 const ngRoute = require('angular-route');
 import routing from './main.routes';
 
-import Observable from 'rxjs/Rx';
+// import Observable from 'rxjs/Rx';
 
 export class MainController {
 

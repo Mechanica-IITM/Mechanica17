@@ -41,37 +41,48 @@
 
 <br><br>
 
-<md-button type="button" class="md-primary md-raised" ng-click="isCollapsed = !isCollapsed">Click to create event</md-button>
+<md-button type="button" class="md-primary md-raised" ng-click="isCollapsed = !isCollapsed">Click to create MEA Event</md-button>
   <hr>
   <div uib-collapse="isCollapsed">
     
-<form name="eventForm" novalidate ng-submit="eventSubmit(eventForm)">
+<form name="meaEventForm" novalidate ng-submit="meaEventSubmit(meaEventForm)">
 
-<div class="form-group">
-  <label>Event Name</label>
-    <input type="text" name="name" ng-model="name" class="form-control" required>
-  <label class="help-block" ng-show="eventForm.name.$error.required &&submitted">
-   Please enter event name
-  </label>
-  
-</div>  
+  <md-input-container class="md-block" flex-gt-sm="">
+            <label>Event Name</label>
+            <input type="text" name="meaName" ng-model="meaName" required>        
+          <div ng-messages="meaEventForm.meaName.$error">
+            <div ng-message="required">Please Enter Event Name</div>
+          </div>
+  </md-input-container>
 
-<div class="form-group">
-  <label>Venue</label>
-    <input type="text" name="venue" ng-model="venue" class="form-control" required>
-  <label class="help-block" ng-show="eventForm.venue.$error.required &&submitted">
-   Please enter venue
-  </label>
-</div>  
 
-<div class="form-group">
-  <label>Info</label>
-    <textarea name="info" ng-model="info" class="form-control" required rows="3"></textarea>
-  <label class="help-block" ng-show="eventForm.info.$error.required &&submitted">
-   Please enter event info
-  </label>
-</div>  
-<div class="form-group">
+
+  <md-input-container class="md-block" flex-gt-sm="">
+            <label>Venue</label>
+            <input type="text" name="meaVenue" ng-model="meaVenue" required>        
+          <div ng-messages="meaEventForm.meaVenue.$error">
+            <div ng-message="required">Please Enter Venue</div>
+          </div>
+  </md-input-container>
+
+
+  <md-input-container class="md-block">
+    <textarea ng-model="meaInfo" name="meaInfo" rows="3" md-select-on-focus="" required></textarea>
+  <label for="meaInfo">Info</label>
+  <div ng-messages="meaEventForm.meaInfo.$error">
+   <div ng-message="required">Please Enter Event Info</div>
+  </div>
+  </md-input-container>
+
+       <md-input-container class="md-block">
+            <label>Date</label>
+            <md-datepicker name="meaDate" required ng-model="meaDate"></md-datepicker>
+          <div ng-messages="meaEventForm.meaDate.$error">
+            <div ng-message="required">Please Enter Date</div>
+          </div>
+        </md-input-container> 
+
+<!-- <div class="form-group">
   <label>Date</label>
     <input type="text" class="form-control" uib-datepicker-popup datepicker-options="dateOptions" ng-model="date" is-open="dateOpen" required close-text="Close" name="date" />
      <span class="input-group">
@@ -82,16 +93,130 @@
   </label>  
           
 </div>          
+ -->
 
-<!-- <div class="form-group">
-  <label>Time</label>
-     <div uib-timepicker name="time" ng-model="mytime" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="ismeridian" required></div>
-  <label class="help-block" ng-show="eventForm.time.$error.required &&submitted">
-   Please select time
-  </label>  
-</div> -->
+<button type="submit" class="btn btn-info">Add MEA Event</button>
+</form>
+<br><br>
+</div>
 
-<button type="submit" class="btn btn-info">Add Event</button>
+<md-button type="button" class="md-raised" ng-click="isCollapsed2 = !isCollapsed2">Click to create event category</md-button>
+  <hr>
+  <div uib-collapse="isCollapsed2">
+    
+<form name="eventCategoryForm" novalidate ng-submit="eventCategorySubmit(eventCategoryForm)">
+
+<md-input-container class="md-block" flex-gt-sm="">
+  <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+            <label>Event Category Name</label>
+            <input type="text" name="CategoryName" ng-model="CategoryName" required>        
+          <div ng-messages="eventCategoryForm.CategoryName.$error">
+            <div ng-message="required">Please Enter Event Category Name</div>
+          </div>
+  </md-input-container>
+
+  <md-input-container class="md-block">
+    <textarea ng-model="CategoryInfo" name="CategoryInfo" rows="3" md-select-on-focus="" required></textarea>
+  <label>Category Info</label>
+  <div ng-messages="eventCategoryForm.CategoryInfo.$error">
+   <div ng-message="required">Please Enter Event Category Info</div>
+  </div>
+  </md-input-container>
+
+<button type="submit" class="btn btn-primary">Add Event Category</button>
 </form>
 </div>
+
+<md-button type="button" class="md-primary md-raised" ng-click="isCollapsed3 = !isCollapsed3">Click to create Mechanica Event</md-button>
+  <hr>
+  <div uib-collapse="isCollapsed3">
+    
+<form name="eventForm" novalidate ng-submit="eventSubmit(eventForm)">
+
+  <md-input-container class="md-block" flex-gt-sm="">
+            <label>Event Name</label>
+            <input type="text" name="name" ng-model="name" required>        
+          <div ng-messages="eventForm.name.$error">
+            <div ng-message="required">Please Enter Event Name</div>
+          </div>
+  </md-input-container>
+
+  <!-- <md-input-container class="md-block" flex-gt-sm="">
+            <label>Venue</label>
+            <input type="text" name="venue" ng-model="venue" required>        
+          <div ng-messages="eventForm.venue.$error">
+            <div ng-message="required">Please Enter Venue</div>
+          </div>
+  </md-input-container>
+ -->
+
+  
+  <md-input-container class="md-block">
+    <textarea ng-model="info" name="info" md-select-on-focus="" required></textarea>
+  <label for="info">Info</label>
+  <div ng-messages="eventForm.info.$error">
+   <div ng-message="required">Please Enter Event Info</div>
+  </div>
+
+  </md-input-container>
+
+  <md-input-container class="md-block">
+    <textarea ng-model="awards" name="awards"  md-select-on-focus="" required></textarea>
+  <label for="awards">Awards</label>
+  <div ng-messages="eventForm.awards.$error">
+   <div ng-message="required">Please Enter awards for event</div>
+  </div>
+
+  </md-input-container>
+  <md-input-container class="md-block">
+    <textarea ng-model="faq" name="faq" md-select-on-focus="" required></textarea>
+  <label for="faq">FAQ</label>
+  <div ng-messages="eventForm.faq.$error">
+   <div ng-message="required">Please Enter Event FAQ</div>
+  </div>
+  </md-input-container>
+
+  <md-input-container class="md-block">
+    <textarea ng-model="rules" name="rules" md-select-on-focus="" required></textarea>
+  <label for="rules">Rules</label>
+  <div ng-messages="eventForm.rules.$error">
+   <div ng-message="required">Please Enter Event Rules</div>
+  </div>
+  </md-input-container>
+  
+  <md-input-container>
+      <md-select placeholder="Assign Category" ng-model="eventCat" required>
+        <md-option ng-value="eventCategory" ng-repeat="eventCategory in eventCategories">{{eventCategory.name}}</md-option>
+      </md-select>
+      <div ng-messages="eventForm.eventCat.$error">
+        <div ng-message="required">Please choose category</div>
+      </div>
+
+  </md-input-container>
+  <md-input-container class="md-block">
+      <label>Date</label>
+      <md-datepicker name="date" required ng-model="date"></md-datepicker>
+      <div ng-messages="eventForm.date.$error">
+          <div ng-message="required">Please Enter Date</div>
+      </div>
+  </md-input-container> 
+
+<!-- <div class="form-group">
+  <label>Date</label>
+    <input type="text" class="form-control" uib-datepicker-popup datepicker-options="dateOptions" ng-model="date" is-open="dateOpen" required close-text="Close" name="date" />
+     <span class="input-group">
+            <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+  <label class="help-block" ng-show="eventForm.date.$error.required &&submitted">
+   Please select date
+  </label>  
+          
+</div>          
+ -->
+
+<button type="submit" class="btn btn-info">Add Mechanica Event</button>
+</form>
+<br><br>
+</div>
+
 </div>

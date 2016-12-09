@@ -1,6 +1,6 @@
 'use strict';
 
-import mongoose from 'mongoose';
+import mongoose,{Schema} from 'mongoose';
 
 var EventCategorySchema = new mongoose.Schema({
   name: String,

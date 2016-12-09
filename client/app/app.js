@@ -5,6 +5,7 @@ import ngAnimate from 'angular-animate';
 import ngAria from 'angular-aria';
 import ngCookies from 'angular-cookies';
 import ngResource from 'angular-resource';
+import ngMessages from 'angular-messages';
 import ngSanitize from 'angular-sanitize';
 import 'angular-socket-io';
 const ngRoute = require('angular-route');
@@ -32,7 +33,7 @@ import socket from '../components/socket/socket.service';
 import './app.css';
 
 angular.module('mechanicaApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngRoute,
-    uiBootstrap,ngAnimate,ngAria,_Auth, account,ngMaterial, admin, navbar, footer, main, constants, socket, util
+    uiBootstrap,ngAnimate,ngAria,_Auth, account,ngMaterial,ngMessages, admin, navbar, footer, main, constants, socket, util
   ])
   .config(routeConfig)
   .directive('userCard', function () {
