@@ -2,6 +2,7 @@
 
 import angular from 'angular';
 import ngAnimate from 'angular-animate';
+
 import ngAria from 'angular-aria';
 import ngCookies from 'angular-cookies';
 import ngResource from 'angular-resource';
@@ -10,9 +11,10 @@ import ngSanitize from 'angular-sanitize';
 import 'angular-socket-io';
 const ngRoute = require('angular-route');
 
+
 import uiBootstrap from 'angular-ui-bootstrap';
 import ngMaterial from 'angular-material';
-// import ngMessages from 'angular-messages';
+// import ngMaterialDatePicker from '../../node_modules/angular-material-datetimepicker/js/angular-material-datetimepicker.min';
 // import ngValidationMatch from 'angular-validation-match';
 
 
@@ -34,7 +36,7 @@ import './app.css';
 
 angular.module('mechanicaApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngRoute,
     uiBootstrap,ngAnimate,ngAria,_Auth, account,ngMaterial,ngMessages, admin, navbar, footer, main, constants, socket, util
-  ])
+    ])
   .config(routeConfig)
   .directive('userCard', function () {
     return {

@@ -34,13 +34,14 @@ export default class AdminController {
         $scope.events = response.data;
 
       });
+
      
     $http.get('/api/eventCategorys')
       .then(response => {
         $scope.eventCategories = response.data;
 
       });
-      
+     console.log(moment()) 
 
       $scope.registered=function(eventId){
         

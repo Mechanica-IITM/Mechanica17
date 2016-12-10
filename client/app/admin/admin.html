@@ -1,4 +1,4 @@
-
+<script type="text/javascript" src="node_modules/angular-material-datetimepicker/node_modules/moment/moment.js"></script>
 
 <div class="container">
   <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
@@ -24,8 +24,8 @@
           </md-select>
   </md-input-container>
   <br><br>
-
-<table class="participantTable" ng-show="selectEvent">
+<div ng-show="selectEvent">
+<table class="participantTable">
   <tr>
     <th>Name</th>
     <th>House</th>
@@ -38,7 +38,9 @@
     <td><input type="number"></td>
   </tr>
 </table>
-
+<br>
+<md-button type="button" class="md-raised">Save Scores</md-button>
+</div>
 <br><br>
 
 <md-button type="button" class="md-primary md-raised" ng-click="isCollapsed = !isCollapsed">Click to create MEA Event</md-button>
