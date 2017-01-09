@@ -1,7 +1,7 @@
 'use strict';
 
 import angular from 'angular';
-// import moment from 'moment';
+import moment from 'moment';
 import ngAnimate from 'angular-animate';
 
 import ngAria from 'angular-aria';
@@ -15,7 +15,7 @@ const ngRoute = require('angular-route');
 
 import uiBootstrap from 'angular-ui-bootstrap';
 import ngMaterial from 'angular-material';
-import ngMaterialDatePicker from 'angular-material-datetimepicker';
+// import ngMaterialDatePicker from 'angular-material-datetimepicker';
 // import ngValidationMatch from 'angular-validation-match';
 
 import {
@@ -35,7 +35,7 @@ import socket from '../components/socket/socket.service';
 import './app.css';
 
 angular.module('mechanicaApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngRoute,
-    uiBootstrap,ngAnimate,ngAria,_Auth, account, ngMaterial, ngMessages, ngMaterialDatePicker, admin, navbar, footer, main, constants, socket, util
+    uiBootstrap,ngAnimate,ngAria,_Auth, account, ngMaterial, ngMessages, admin, navbar, footer, main, constants, socket, util
     ])
   .config(routeConfig)
   .directive('userCard', function () {
