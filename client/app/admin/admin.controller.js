@@ -41,7 +41,6 @@ export default class AdminController {
         $scope.eventCategories = response.data;
 
       });
-     console.log(moment()) 
 
       $scope.registered=function(eventId){
         

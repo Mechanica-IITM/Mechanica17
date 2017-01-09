@@ -1,5 +1,4 @@
-<script type="text/javascript" src="node_modules/angular-material-datetimepicker/node_modules/moment/moment.js"></script>
-
+<!-- <script type="text/javascript" src="../node_modules/angular-material-datetimepicker/node_modules/moment/moment.js"></script> -->
 <div class="container">
   <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
   <h6 ng-click="populateTeams()"><u>Clik this to Populate Houses. Click only if there are no houses in DB.</u><h6>
@@ -109,7 +108,7 @@
 <form name="eventCategoryForm" novalidate ng-submit="eventCategorySubmit(eventCategoryForm)">
 
 <md-input-container class="md-block" flex-gt-sm="">
-  <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+  <!-- <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon> -->
             <label>Event Category Name</label>
             <input type="text" name="CategoryName" ng-model="CategoryName" required>        
           <div ng-messages="eventCategoryForm.CategoryName.$error">
@@ -195,6 +194,14 @@
       </div>
 
   </md-input-container>
+   <md-input-container class="md-block">
+        <label>Timepicker Only</label>
+        <input mdc-datetime-picker date="true" time="true" type="text" id="time" short-time="true"
+               placeholder="Time"
+               min-date="minDate"
+               format="hh:mm a"
+               ng-model="time">
+    </md-input-container>
   <md-input-container class="md-block">
       <label>Date</label>
       <md-datepicker name="date" required ng-model="date"></md-datepicker>
