@@ -1,0 +1,31 @@
+<section class="fullW bglg thumbs_wrap" style="min-height:100vh;">
+	<div id="hidden"></div>
+	<div class="fullW paddingLR thumbs_wrap">
+	  <h2 class="centric colorbl centric">Contact us</h2>
+	  <hr/>
+	  <div class="fullW thumbs_wrap" ng-repeat="core in vm.cores">
+	    <h4 class="centric">{{core.type}}</h4>
+	    <div class="fullW thumbs_wrap valignOutMob">
+	      <div class="col-sm-4" ng-repeat="profile in core.profile">
+	        <regular-card user="profile"></regular-card>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</section>
+
+<script type="text/ng-template" id="regularcard.html">
+  
+  <md-card>
+    <md-card-title>
+      <div class="floatL">
+        <img src="assets/team/{{user.name}}.jpg" class="dp"/>
+      </div>
+      <div class="floatL" style="padding:0px 0px 0px 10px">
+        <h5>{{user.name}}</h5>
+        <p style="font-size:12px;margin-bottom:5px">{{user.email}}</p>
+        <p style="font-size:12px;margin-bottom:5px">{{user.phone}}</p>
+      </div>
+    </md-card-title>
+  </md-card>
+</script>

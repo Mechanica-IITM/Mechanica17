@@ -20,7 +20,9 @@
 color: #666;
 }
 
-
+#hidden{
+  height: 40px;
+}
 /*font colors*/
 .colorg{
  color: rgba(0,0,0,0.6);
