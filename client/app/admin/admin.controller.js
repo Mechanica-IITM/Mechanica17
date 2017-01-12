@@ -28,6 +28,14 @@ export default class AdminController {
      $scope.dateOpen=false;
      $scope.ismeridian=true;
      $scope.participantIds=[];
+     
+     $scope.startTime=new Date;
+     $scope.startTime.setHours($scope.startTimeHrs);
+     $scope.startTime.setMinutes($scope.startTimeMins);
+     $scope.endTime=new Date;
+     $scope.endTime.setHours($scope.endTimeHrs);
+     $scope.endTime.setMinutes($scope.endTimeMins);
+    
 
     $http.get('/api/meaEvents')
       .then(response => {
@@ -41,7 +49,7 @@ export default class AdminController {
         $scope.eventCategories = response.data;
 
       });
-     console.log(moment()) 
+     
 
       $scope.registered=function(eventId){
         
@@ -77,11 +85,15 @@ export default class AdminController {
             info:$scope.info,
             awards:$scope.awards,
             faq:$scope.faq,
-            rules:$scope.rules            
+            rules:$scope.rules,
+            date:$scope.date,
+            startTime:$scope.startTime,
+            endTime:$scope.endTime
+     
+
           }
         ).then(function(response){
-          $location.path('/');
-
+          $location.path('/admin');
         }).then(function(err){
           console.log(err);
         })
