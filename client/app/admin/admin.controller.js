@@ -49,7 +49,6 @@ export default class AdminController {
         $scope.eventCategories = response.data;
 
       });
-     
 
       $scope.registered=function(eventId){
         
@@ -93,7 +92,7 @@ export default class AdminController {
 
           }
         ).then(function(response){
-          $location.path('/admin');
+          $location.path('/');
         }).then(function(err){
           console.log(err);
         })
