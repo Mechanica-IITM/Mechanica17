@@ -85,6 +85,15 @@ export function show(req, res) {
     .catch(handleError(res));
 }
 
+// Leaderboard
+export function leaderboard(req, res) {
+
+  return House.find().select('name totalScore').sort({totalScore:-1}).exec()
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
+
 // Creates a new House in the DB
 export function create(req, res) {
 
@@ -92,6 +101,7 @@ export function create(req, res) {
     var house = {
       name: form[i].House_Name,
       team: [],
+      totalScore:i
     };
     var commanderEmail = form[i].commanderRoll+'@smail.iitm.ac.in';
     User.create({

@@ -43,12 +43,15 @@ export default class AdminController {
 
       });
 
-     
-    $http.get('/api/eventCategorys')
+
+    $http.get('/api/houses/display/leaderboard')
       .then(response => {
-        $scope.eventCategories = response.data;
+        console.log("Leader board")
+        console.log(response.data);
 
       });
+
+    
 
       $scope.registered=function(eventId){
         
