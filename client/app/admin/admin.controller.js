@@ -28,6 +28,7 @@ export default class AdminController {
      $scope.dateOpen=false;
      $scope.ismeridian=true;
      $scope.participantIds=[];
+     $scope.participants=[];
      
      $scope.startTime=new Date;
      $scope.startTime.setHours($scope.startTimeHrs);
@@ -51,8 +52,6 @@ export default class AdminController {
 
       });
 
-    
-
       $scope.registered=function(eventId){
         
         $http.get('/api/meaEvents/'+eventId)
@@ -68,12 +67,21 @@ export default class AdminController {
                {
                 $http.get('/api/users/'+$scope.participantIds[j])
                 .then(response => {
-                      $scope.participants = response.data;
-                      console.log($scope.participants);
+                      $scope.participants.push(response.data);
+                      
+                        for(var k in $scope.participants)
+                         {
+                          $http.get('/api/houses/'+$scope.participants[k].house)
+                            .then(response => {
+                              $scope.participants[k].houseName=response.data.name;
+                            }
+
+                            );
+                         }
                     });
 
                }
- 
+               console.log($scope.participants);
             });    
         }
 
