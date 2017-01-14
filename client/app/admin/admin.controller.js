@@ -69,7 +69,11 @@ export default class AdminController {
                 .then(response => {
                       $scope.participants.push(response.data);
                       
-                        for(var k in $scope.participants)
+                    });
+
+               }
+               console.log($scope.participants);
+               for(var k in $scope.participants)
                          {
                           $http.get('/api/houses/'+$scope.participants[k].house)
                             .then(response => {
@@ -78,10 +82,6 @@ export default class AdminController {
 
                             );
                          }
-                    });
-
-               }
-               console.log($scope.participants);
             });    
         }
 
