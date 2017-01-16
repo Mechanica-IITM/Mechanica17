@@ -45,17 +45,30 @@ export function index(req, res) {
  * Creates a new user
  */
 export function create(req, res) {
-  var newUser = new User(req.body);
-  newUser.provider = 'local';
-  newUser.role = 'user';
-  newUser.save()
-    .then(function(user) {
-      var token = jwt.sign({ _id: user._id }, config.secrets.session, {
-        expiresIn: 60 * 60 * 5
-      });
-      res.json({ token });
+
+  if(req.body.rollNumber)
+    var rollNumber = req.body.rollNumber.split(' ');
+    rollNumber = rollNumber.join('').toLowerCase();
+    House.findOne({ team: { $elemMatch: req.body.rollNumber}})
+    .exec()
+    .then(house=>{
+
+      var newUser = new User(req.body);
+
+      if(house.length)
+        newUser.house = house._id;
+
+      newUser.provider = 'local';
+      newUser.role = 'user';
+      newUser.save()
+        .then(function(user) {
+          var token = jwt.sign({ _id: user._id }, config.secrets.session, {
+            expiresIn: 60 * 60 * 5
+          });
+          res.json({ token });
+        })
+        .catch(validationError(res));
     })
-    .catch(validationError(res));
 }
 
 /**
@@ -115,7 +128,7 @@ export function changePassword(req, res) {
 export function me(req, res, next) {
   var userId = req.user._id;
 
-  return User.findOne({ _id: userId }, '-salt -password').exec()
+  return User.findOne({ _id: userId }, '-salt -password').populate('house').exec()
     .then(user => { // don't ever give out the password or salt
       if(!user) {
         return res.status(401).end();

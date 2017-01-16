@@ -5,9 +5,6 @@ export default class AdminController {
   constructor(User, $http, $scope, $interval,$location) {
     // Use the User $resource to fetch all users
     this.users = User.query();
-    $http.get('api/houses/').then(function(response){
-      console.log(response);
-    })
     $scope.populateTeams = function(){
       var i=0;
       $interval(function(){
@@ -17,7 +14,7 @@ export default class AdminController {
         }).then(function(err){
           console.log(err);
         })
-      },10000,4)
+      },1000,27)
     }
      $scope.submitted=false;
      $scope.submitted1=false;
@@ -47,9 +44,7 @@ export default class AdminController {
 
     $http.get('/api/houses/display/leaderboard')
       .then(response => {
-        console.log("Leader board")
-        console.log(response.data);
-
+        $scope.leaderboard = response.data;
       });
 
       $scope.registered=function(eventId){

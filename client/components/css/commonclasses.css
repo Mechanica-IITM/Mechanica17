@@ -126,6 +126,12 @@ color: #666;
 .fullW{
      width: 100%;
 }
+.fullH{
+     min-height: 100vh;
+}
+label{
+  color: grey
+}
 .borderLt{
     border:1px solid #ddd;
 }
