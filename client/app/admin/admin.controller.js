@@ -115,6 +115,16 @@ export default class AdminController {
 
     $scope.editEvent = function(event){
       $scope.event = event;
+      $scope.event.date=new Date($scope.event.date);
+      
+      $scope.event.startTime=new Date($scope.event.startTime);
+      $scope.event.startTimeHrs=$scope.event.startTime.getHours();
+      $scope.event.startTimeMins=$scope.event.startTime.getMinutes();
+      
+      $scope.event.endTime=new Date($scope.event.endTime);
+      $scope.event.endTimeHrs=$scope.event.endTime.getHours();
+      $scope.event.endTimeMins=$scope.event.endTime.getMinutes();
+      
       $scope.editThisEvent = true;
     }
     

@@ -1,27 +1,28 @@
+<section class="main">
+  <div class="fullW thumbs_wrap">
+    
+    <div id="hidden"></div>
+    <div class="padding10">
+      <h2>{{user.name}}</h2>
+      <p>{{user.house.name}}</p>
+    </div>
+    <div style="position:fixed;left:10px;bottom:10px">
+      <img src="assets/images/iitmlogo.png" width="55px"/>
+      <img src="assets/images/mea.png" width="70px" />
+    </div>
 
-<div class="fullW thumbs_wrap">
-  
-  <div id="hidden"></div>
-  <div class="padding10">
-    <h2>{{user.name}}</h2>
-    <p>{{user.house.name}}</p>
-  </div>
-  <div style="position:fixed;left:10px;bottom:10px">
-    <img src="assets/images/iitmlogo.png" width="55px"/>
-    <img src="assets/images/mea.png" width="70px" />
-  </div>
+    <div style="position:fixed;right:10px;bottom:10px;z-index:10">
+        <a href="https://www.facebook.com/mechanica.iitm" target="_blank" class="cursorp"><img src="assets/images/fb_icon.png" height='30px'/></a>
+        <a href="https://twitter.com/Mechanica_IITM" target="_blank" class="cursorp"><img src="assets/images/twitter_icon.png" height='34px'/></a>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div ng-repeat="event in $ctrl.events" ng-show="$ctrl.isLoggedIn()">
+        <h4>{{event.name}}</h4>
+         <button type="button" ng-click="$ctrl.registerEvent(event)" class="btn btn-lg btn-warning" >REGISTER</button>
 
-  <div style="position:fixed;right:10px;bottom:10px;z-index:10">
-      <a href="https://www.facebook.com/mechanica.iitm" target="_blank" class="cursorp"><img src="assets/images/fb_icon.png" height='30px'/></a>
-      <a href="https://twitter.com/Mechanica_IITM" target="_blank" class="cursorp"><img src="assets/images/twitter_icon.png" height='34px'/></a>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div ng-repeat="event in $ctrl.events" ng-show="$ctrl.isLoggedIn()">
-      <h4>{{event.name}}</h4>
-       <button type="button" ng-click="$ctrl.registerEvent(event)" class="btn btn-lg btn-warning" >REGISTER</button>
-
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>

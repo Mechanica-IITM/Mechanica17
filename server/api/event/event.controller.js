@@ -119,6 +119,30 @@ export function upsert(req, res) {
     .catch(handleError(res));
 }
 
+export function update(req, res) {
+  if(req.body._id) {
+    delete req.body._id;
+  }
+  return Event.findById(req.params.id).exec()
+    .then(handleEntityNotFound(res))
+    .then(event=>{
+    event.name=req.body.name;
+    event.info=req.body.info;
+    event.faq=req.body.faq;
+    event.rules=req.body.rules;
+    event.awards=req.body.awards;
+    event.date=new Date(req.body.date)
+    event.startTime=new Date(req.body.startTime)
+    event.endTime=new Date(req.body.endTime);
+    event.venue=req.body.venue;
+    event.poster=req.body.poster;
+    event.save()
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+    })
+    .catch(handleError(res));
+}
+
 export function register (req, res){
   return Event.findById(req.params.id)
   .exec()
