@@ -17,70 +17,6 @@
   <br><br> -->
   <md-content>
     <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
-      <md-tab label="save scores">
-        <md-content class="md-padding">
-          <md-input-container>
-            <label>Event</label>
-            <md-select ng-model="selectEvent">
-              <md-option ng-repeat="event in events"  ng-value="event.name" ng-click="registered(event._id)">
-                {{event.name}}
-              </md-option>
-            </md-select>
-          </md-input-container>
-          <br><br>
-          <div ng-show="selectEvent">
-            <table class="participantTable">
-              <tr>
-                <th>Name</th>
-                <th>House</th>
-                <th>Score</th>
-              </tr>
-              <tr ng-repeat="participant in participants">
-                <td>{{participant.name}}</td>
-                <td>{{participant.houseName}}</td>
-                <td><input type="number"></td>
-              </tr>
-            </table>
-            <br>
-            <md-button type="button" class="md-raised">Save Scores</md-button>
-          </div>
-        </md-content>
-      </md-tab>
-      <md-tab label="create mea event">
-        <md-content class="md-padding">
-          <form name="meaEventForm" novalidate ng-submit="meaEventSubmit(meaEventForm)">
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>Event Name</label>
-              <input type="text" name="meaName" ng-model="meaName" required>        
-              <div ng-messages="meaEventForm.meaName.$error">
-                <div ng-message="required">Please Enter Event Name</div>
-              </div>
-            </md-input-container>
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>Venue</label>
-              <input type="text" name="meaVenue" ng-model="meaVenue" required>        
-              <div ng-messages="meaEventForm.meaVenue.$error">
-                <div ng-message="required">Please Enter Venue</div>
-              </div>
-            </md-input-container>
-            <md-input-container class="md-block">
-              <textarea ng-model="meaInfo" name="meaInfo" rows="3" md-select-on-focus="" required></textarea>
-              <label for="meaInfo">Info</label>
-              <div ng-messages="meaEventForm.meaInfo.$error">
-                <div ng-message="required">Please Enter Event Info</div>
-              </div>
-            </md-input-container>
-            <md-input-container class="md-block">
-              <label>Date</label>
-              <md-datepicker name="meaDate" required ng-model="meaDate"></md-datepicker>
-              <div ng-messages="meaEventForm.meaDate.$error">
-                <div ng-message="required">Please Enter Date</div>
-              </div>
-            </md-input-container>
-            <button type="submit" class="btn btn-info">Add MEA Event</button>
-          </form>
-        </md-content>
-      </md-tab>
       <md-tab label="create event category">
         <md-content class="md-padding">
           <form name="eventCategoryForm" novalidate ng-submit="eventCategorySubmit(eventCategoryForm)">
@@ -103,9 +39,10 @@
           </form>
         </md-content>
       </md-tab>
-      <md-tab label="create mechanica event">
+      <md-tab label="Add/Edit mechanica event" md-active="editThisEvent" md-on-deselect="setEventNull">
         <md-content class="md-padding">
           <form name="eventForm" novalidate ng-submit="eventSubmit(eventForm)">
+            <small>What ever isn't decided yet, can be written as - Will be updated soon</small>
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Event Name</label>
               <input type="text" name="name" ng-model="event.name" required>        
@@ -113,36 +50,42 @@
                 <div ng-message="required">Please Enter Event Name</div>
               </div>
             </md-input-container>
-            <!-- <md-input-container class="md-block" flex-gt-sm="">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Event Picture Url</label>
+              <input type="text" name="poster" ng-model="event.poster">
+              <small>You can upload picture in google drive and share the link here. Please compress the image before uploading.</small>   
+            </md-input-container>
+
+            <md-input-container class="col-sm-6" flex-gt-sm="">
               <label>Venue</label>
-              <input type="text" name="venue" ng-model="venue" required>        
+              <input type="text" name="venue" ng-model="event.venue" required>        
               <div ng-messages="eventForm.venue.$error">
               <div ng-message="required">Please Enter Venue</div>
               </div>
-              </md-input-container>
-              -->
-            <md-input-container class="md-block">
+            </md-input-container>
+             
+            <md-input-container class="col-sm-6">
               <textarea ng-model="event.info" name="info" md-select-on-focus="" required></textarea>
               <label for="info">Info</label>
               <div ng-messages="eventForm.info.$error">
                 <div ng-message="required">Please Enter Event Info</div>
               </div>
             </md-input-container>
-            <md-input-container class="md-block">
+            <md-input-container class="col-sm-6">
               <textarea ng-model="event.awards" name="awards"  md-select-on-focus="" required></textarea>
               <label for="awards">Awards</label>
               <div ng-messages="eventForm.awards.$error">
                 <div ng-message="required">Please Enter awards for event</div>
               </div>
             </md-input-container>
-            <md-input-container class="md-block">
+            <md-input-container class="col-sm-6">
               <textarea ng-model="event.faq" name="faq" md-select-on-focus="" required></textarea>
               <label for="faq">FAQ</label>
               <div ng-messages="eventForm.faq.$error">
                 <div ng-message="required">Please Enter Event FAQ</div>
               </div>
             </md-input-container>
-            <md-input-container class="md-block">
+            <md-input-container class="col-md-12">
               <textarea ng-model="event.rules" name="rules" md-select-on-focus="" required></textarea>
               <label for="rules">Rules</label>
               <div ng-messages="eventForm.rules.$error">
@@ -205,6 +148,70 @@
               </md-input-container>
             </div>
             <button type="submit" class="btn btn-info">Save Mechanica Event</button>
+          </form>
+        </md-content>
+      </md-tab>
+      <md-tab label="save scores">
+        <md-content class="md-padding">
+          <md-input-container>
+            <label>Event</label>
+            <md-select ng-model="selectEvent">
+              <md-option ng-repeat="event in events"  ng-value="event.name" ng-click="registered(event._id)">
+                {{event.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <br><br>
+          <div ng-show="selectEvent">
+            <table class="participantTable">
+              <tr>
+                <th>Name</th>
+                <th>House</th>
+                <th>Score</th>
+              </tr>
+              <tr ng-repeat="participant in participants">
+                <td>{{participant.name}}</td>
+                <td>{{participant.houseName}}</td>
+                <td><input type="number"></td>
+              </tr>
+            </table>
+            <br>
+            <md-button type="button" class="md-raised">Save Scores</md-button>
+          </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="create mea event">
+        <md-content class="md-padding">
+          <form name="meaEventForm" novalidate ng-submit="meaEventSubmit(meaEventForm)">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Event Name</label>
+              <input type="text" name="meaName" ng-model="meaName" required>        
+              <div ng-messages="meaEventForm.meaName.$error">
+                <div ng-message="required">Please Enter Event Name</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Venue</label>
+              <input type="text" name="meaVenue" ng-model="meaVenue" required>        
+              <div ng-messages="meaEventForm.meaVenue.$error">
+                <div ng-message="required">Please Enter Venue</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <textarea ng-model="meaInfo" name="meaInfo" rows="3" md-select-on-focus="" required></textarea>
+              <label for="meaInfo">Info</label>
+              <div ng-messages="meaEventForm.meaInfo.$error">
+                <div ng-message="required">Please Enter Event Info</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Date</label>
+              <md-datepicker name="meaDate" required ng-model="meaDate"></md-datepicker>
+              <div ng-messages="meaEventForm.meaDate.$error">
+                <div ng-message="required">Please Enter Date</div>
+              </div>
+            </md-input-container>
+            <button type="submit" class="btn btn-info">Add MEA Event</button>
           </form>
         </md-content>
       </md-tab>

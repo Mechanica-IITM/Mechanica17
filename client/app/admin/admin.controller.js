@@ -115,8 +115,12 @@ export default class AdminController {
 
     $scope.editEvent = function(event){
       $scope.event = event;
+      $scope.editThisEvent = true;
     }
     
+    $scope.setEventNull = function(){
+      $scope.event = {};
+    }
     $scope.meaEventSubmit=function(form){
       $scope.submitted=true;
       if(form.$valid)

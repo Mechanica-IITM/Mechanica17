@@ -11,9 +11,12 @@ var EventSchema = new mongoose.Schema({
   awards: String,
   faq: String,
   rules: String,
+  venue: String,
   attachment: String,
+  poster: String,
   active: Boolean,
-  eventCategory: {type: mongoose.Schema.Types.ObjectId, ref:'EventCategory'}
+  eventCategory: {type: mongoose.Schema.Types.ObjectId, ref:'EventCategory'},
+  registered:[{user:{type:mongoose.Schema.Types.ObjectId,ref:'User'}}]
 });
 
 export default mongoose.model('Event', EventSchema);

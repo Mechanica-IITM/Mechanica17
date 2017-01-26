@@ -75,7 +75,15 @@ export function index(req, res) {
 export function show(req, res) {
   return Event.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
-    .then(respondWithResult(res))
+    .then(event => {
+      var isRegistered = false;
+      isRegistered = event.registered.find(function(user){
+        if(user.user.equals(req.user._id))
+          return true;
+        return false;
+      })
+      return res.json({event:event, isRegistered: isRegistered});
+    })
     .catch(handleError(res));
 }
 
@@ -105,12 +113,23 @@ export function upsert(req, res) {
     delete req.body._id;
   }
   console.log(req.body);
-  return Event.findOneAndUpdate(req.params.id, req.body, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
+  return Event.findOneAndUpdate(req.params.id, req.body, {upsert: true, new:true, setDefaultsOnInsert: true, runValidators: true}).exec()
 
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
+export function register (req, res){
+  return Event.findById(req.params.id)
+  .exec()
+  .then( event =>{
+    event.registered.push({user:req.user._id});
+    event.save()
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+  })
+  .catch(handleError(res));
+}
 // Updates an existing Event in the DB
 export function patch(req, res) {
   if(req.body._id) {

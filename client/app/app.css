@@ -46,6 +46,8 @@
 /* inject:css */
 @import 'admin/admin.css';
 @import 'contactUs/contactUs.css';
+@import 'event/event.css';
+@import 'eventCategory/eventCategory.css';
 @import 'hospi/hospi.css';
 @import 'main/main.css';
 @import 'sponsors/sponsors.css';
