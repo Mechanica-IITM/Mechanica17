@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-default navbar-fixed-top" style="background:rgb(0, 41, 45);border:0px">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle" type="button" ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed">
@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand">Mechanica</a>
+      <a href="/" class="navbar-brand colorw cursorp">Home</a>
     </div>
     <div uib-collapse="!$ctrl.isCollapsed" class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
@@ -18,11 +18,11 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li ng-hide="$ctrl.isLoggedIn()" ng-class="{active: $ctrl.isActive('/signup')}"><a href="/signup">Sign up</a></li>
-        <li ng-hide="$ctrl.isLoggedIn()" ng-class="{active: $ctrl.isActive('/login')}"><a href="/login">Login</a></li>
-        <li ng-show="$ctrl.isLoggedIn()"><p class="navbar-text">Hello {{ $ctrl.getCurrentUser().name }}</p> </li>
-        <li ng-show="$ctrl.isLoggedIn()" ng-class="{active: $ctrl.isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
-        <li ng-show="$ctrl.isLoggedIn()"><a href="/logout">Logout</a></li>
+        <li ng-hide="$ctrl.isLoggedIn()" ng-class="{active: $ctrl.isActive('/signup')}" style="padding:15px"><a href="/signup" style="padding:5px 10px;border:1px solid white;border-radius:5px">Sign up</a></li>
+        <li ng-hide="$ctrl.isLoggedIn()" ng-class="{active: $ctrl.isActive('/login')}" style="padding:15px"><a href="/login" style="padding:5px 10px;border:1px solid white;border-radius:5px">Login</a></li>
+        <li ng-show="$ctrl.isLoggedIn()" style="padding:15px"><p class="navbar-text" style="padding:5px 10px;">Hello {{ $ctrl.getCurrentUser().name }}</p> </li>
+        <li ng-show="$ctrl.isLoggedIn()" ng-class="{active: $ctrl.isActive('/settings')}" style="padding:15px"><a href="/settings" style="padding:5px 10px;"><span class="glyphicon glyphicon-cog"></span></a></li>
+        <li ng-show="$ctrl.isLoggedIn()" style="padding:15px" style="padding:5px 10px;"><a href="/logout">Logout</a></li>
       </ul>
     </div>
   </div>
