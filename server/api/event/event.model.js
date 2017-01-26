@@ -12,7 +12,8 @@ var EventSchema = new mongoose.Schema({
   faq: String,
   rules: String,
   attachment: String,
-  active: Boolean
+  active: Boolean,
+  eventCategory: {type: mongoose.Schema.Types.ObjectId, ref:'EventCategory'}
 });
 
 export default mongoose.model('Event', EventSchema);

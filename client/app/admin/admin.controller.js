@@ -2,7 +2,7 @@
 
 export default class AdminController {
   /*@ngInject*/
-  constructor(User, $http, $scope, $interval,$location) {
+  constructor(User, $http, $scope, $interval) {
     // Use the User $resource to fetch all users
     this.users = User.query();
     $scope.populateTeams = function(){
@@ -27,14 +27,6 @@ export default class AdminController {
      $scope.participantIds=[];
      $scope.participants=[];
      
-     $scope.startTime=new Date;
-     $scope.startTime.setHours($scope.startTimeHrs);
-     $scope.startTime.setMinutes($scope.startTimeMins);
-     $scope.endTime=new Date;
-     $scope.endTime.setHours($scope.endTimeHrs);
-     $scope.endTime.setMinutes($scope.endTimeMins);
-    
-
     $http.get('/api/meaEvents')
       .then(response => {
         $scope.events = response.data;
@@ -45,6 +37,11 @@ export default class AdminController {
     $http.get('/api/houses/display/leaderboard')
       .then(response => {
         $scope.leaderboard = response.data;
+      });
+    $http.get('/api/eventCategorys/')
+      .then(response => {
+        console.log(response.data);
+        $scope.eventCategories = response.data;
       });
 
       $scope.registered=function(eventId){
@@ -80,31 +77,45 @@ export default class AdminController {
             });    
         }
 
-     $scope.eventSubmit=function(form){
+    $scope.event = {};
+    $scope.eventSubmit=function(form){
+      $scope.event.startTime = new Date($scope.event.date);
+      $scope.event.startTime.setHours($scope.event.startTimeHrs);
+      $scope.event.startTime.setMinutes($scope.event.startTimeMins);
+
+      $scope.event.endTime = new Date($scope.event.date);
+      $scope.event.endTime.setHours($scope.event.endTimeHrs);
+      $scope.event.endTime.setMinutes($scope.event.endTimeMins);
+
       $scope.submitted=true;
+      
       if(form.$valid)
       {
-        $http.post('/api/events',
-          { 
-            name:$scope.name,
-            info:$scope.info,
-            awards:$scope.awards,
-            faq:$scope.faq,
-            rules:$scope.rules,
-            date:$scope.date,
-            startTime:$scope.startTime,
-            endTime:$scope.endTime
-     
+        var method = 'POST';
+        var id = ''; // empty for creating new event
+        if($scope.event._id){
+          method = 'PUT';
+          id = $scope.event._id;
+        }
 
-          }
-        ).then(function(response){
-          $location.path('/');
-        }).then(function(err){
+        $http({
+          method : method,
+          url : '/api/events/'+id,
+          data : $scope.event
+        }).then(function(response){
+          location.reload();
+        }).catch(function(err){
           console.log(err);
         })
       
       }
+      else
+        alert('Please Check the form');
     };
+
+    $scope.editEvent = function(event){
+      $scope.event = event;
+    }
     
     $scope.meaEventSubmit=function(form){
       $scope.submitted=true;
@@ -118,7 +129,7 @@ export default class AdminController {
             date:$scope.meaDate
           }
         ).then(function(response){
-          $location.path('/');
+          location.reload();
 
         }).then(function(err){
           console.log(err);
@@ -137,7 +148,7 @@ export default class AdminController {
             info:$scope.CategoryInfo
           }
         ).then(function(response){
-          $location.path('/');
+          location.reload();
 
         }).then(function(err){
           console.log(err);

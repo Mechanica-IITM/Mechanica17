@@ -118,7 +118,7 @@ export function create(req, res) {
     var i = req.params.i;
     var house = {
       name: form[i].House_Name,
-      team: [form[i].commanderRoll.toUpperCase()],
+      team: [{member:form[i].commanderRoll.toUpperCase()}],
       totalScore:0,
       commander: form[i].commanderRoll.toUpperCase(),
       commanderPh: form[i].commanderPh
@@ -126,7 +126,7 @@ export function create(req, res) {
     for(var j=0; j<10;++j){
       var property = 'TeamMem'+j;
       if(form[i].hasOwnProperty(property))
-        house.team.push(form[i][property].toUpperCase())
+        house.team.push({member:form[i][property].toUpperCase()})
     }
 
     House.create(house).then(respondWithResult(res))

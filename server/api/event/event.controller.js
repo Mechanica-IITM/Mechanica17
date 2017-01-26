@@ -12,6 +12,7 @@
 
 import jsonpatch from 'fast-json-patch';
 import Event from './event.model';
+import EventCategory from '../eventCategory/eventCategory.model';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -80,8 +81,21 @@ export function show(req, res) {
 
 // Creates a new Event in the DB
 export function create(req, res) {
+  console.log(req.body);
   return Event.create(req.body)
-    .then(respondWithResult(res, 201))
+    .then(event=>{
+      EventCategory.findById(event.eventCategory)
+      .exec()
+      .then(handleEntityNotFound(res))
+      .then(eventCategory=>{
+        console.log(eventCategory);
+        eventCategory.events.push({event:event._id});
+        eventCategory.save()
+        .then(respondWithResult(res, 201))
+        .catch(handleError(res));
+      })
+      .catch(handleError(res));
+    })
     .catch(handleError(res));
 }
 
@@ -90,6 +104,7 @@ export function upsert(req, res) {
   if(req.body._id) {
     delete req.body._id;
   }
+  console.log(req.body);
   return Event.findOneAndUpdate(req.params.id, req.body, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
 
     .then(respondWithResult(res))

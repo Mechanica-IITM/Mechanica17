@@ -65,7 +65,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of EventCategorys
 export function index(req, res) {
-  return EventCategory.find().exec()
+  return EventCategory.find().populate('events.event').exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

@@ -108,7 +108,7 @@
           <form name="eventForm" novalidate ng-submit="eventSubmit(eventForm)">
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Event Name</label>
-              <input type="text" name="name" ng-model="name" required>        
+              <input type="text" name="name" ng-model="event.name" required>        
               <div ng-messages="eventForm.name.$error">
                 <div ng-message="required">Please Enter Event Name</div>
               </div>
@@ -122,36 +122,36 @@
               </md-input-container>
               -->
             <md-input-container class="md-block">
-              <textarea ng-model="info" name="info" md-select-on-focus="" required></textarea>
+              <textarea ng-model="event.info" name="info" md-select-on-focus="" required></textarea>
               <label for="info">Info</label>
               <div ng-messages="eventForm.info.$error">
                 <div ng-message="required">Please Enter Event Info</div>
               </div>
             </md-input-container>
             <md-input-container class="md-block">
-              <textarea ng-model="awards" name="awards"  md-select-on-focus="" required></textarea>
+              <textarea ng-model="event.awards" name="awards"  md-select-on-focus="" required></textarea>
               <label for="awards">Awards</label>
               <div ng-messages="eventForm.awards.$error">
                 <div ng-message="required">Please Enter awards for event</div>
               </div>
             </md-input-container>
             <md-input-container class="md-block">
-              <textarea ng-model="faq" name="faq" md-select-on-focus="" required></textarea>
+              <textarea ng-model="event.faq" name="faq" md-select-on-focus="" required></textarea>
               <label for="faq">FAQ</label>
               <div ng-messages="eventForm.faq.$error">
                 <div ng-message="required">Please Enter Event FAQ</div>
               </div>
             </md-input-container>
             <md-input-container class="md-block">
-              <textarea ng-model="rules" name="rules" md-select-on-focus="" required></textarea>
+              <textarea ng-model="event.rules" name="rules" md-select-on-focus="" required></textarea>
               <label for="rules">Rules</label>
               <div ng-messages="eventForm.rules.$error">
                 <div ng-message="required">Please Enter Event Rules</div>
               </div>
             </md-input-container>
             <md-input-container>
-              <md-select placeholder="Assign Category" ng-model="eventCat" required>
-                <md-option ng-value="eventCategory" ng-repeat="eventCategory in eventCategories">{{eventCategory.name}}</md-option>
+              <md-select placeholder="Assign Category" ng-model="event.eventCategory" required>
+                <md-option ng-value="eventCategory._id" ng-repeat="eventCategory in eventCategories">{{eventCategory.name}}</md-option>
               </md-select>
               <div ng-messages="eventForm.eventCat.$error">
                 <div ng-message="required">Please choose category</div>
@@ -159,7 +159,7 @@
             </md-input-container>
             <md-input-container class="md-block">
               <label>Date</label>
-              <md-datepicker name="date" required ng-model="date"></md-datepicker>
+              <md-datepicker name="date" required ng-model="event.date"></md-datepicker>
               <div ng-messages="eventForm.date.$error">
                 <div ng-message="required">Please Enter Date</div>
               </div>
@@ -167,7 +167,7 @@
             <div layout-gt-sm="row">
               <md-input-container class="md-block" flex-gt-sm="12">
                 <label>Start time (hrs)</label>
-                <input type="number" name="startTimeHrs" ng-model="startTimeHrs" required min="0" max="23"/>
+                <input type="number" name="startTimeHrs" ng-model="event.startTimeHrs" required min="0" max="23"/>
                 <div ng-messages="eventForm.startTimeHrs.$error">
                   <div ng-message="required">Please Enter Starting Time</div>
                   <div ng-message="min">Enter between 0 and 23</div>
@@ -175,7 +175,7 @@
                 </div>
               </md-input-container>
               <md-input-container class="md-block mins" flex-gt-sm="12">
-                <input type="number" name="startTimeMins" ng-model="startTimeMins" required min="0" max="59">
+                <input type="number" name="startTimeMins" ng-model="event.startTimeMins" required min="0" max="59">
                 <label>Start time (mins)</label>
                 <div ng-messages="eventForm.startTimeMins.$error">
                   <div ng-message="required">Please Enter Starting Time</div>
@@ -187,7 +187,7 @@
             <div layout-gt-sm="row">
               <md-input-container class="md-block" flex-gt-sm="12">
                 <label>End time (hrs)</label>
-                <input type="number" name="endTimeHrs" ng-model="endTimeHrs" required min="0" max="23">
+                <input type="number" name="endTimeHrs" ng-model="event.endTimeHrs" required min="0" max="23">
                 <div ng-messages="eventForm.endTimeHrs.$error">
                   <div ng-message="required">Please Enter Ending Time</div>
                   <div ng-message="min">Enter between 0 and 23</div>
@@ -195,7 +195,7 @@
                 </div>
               </md-input-container>
               <md-input-container class="md-block mins" flex-gt-sm="12">
-                <input type="number" name="endTimeMins" min="0" max="59" ng-model="endTimeMins" required>
+                <input type="number" name="endTimeMins" min="0" max="59" ng-model="event.endTimeMins" required>
                 <label>End time (mins)</label>
                 <div ng-messages="eventForm.endTimeMins.$error">
                   <div ng-message="required">Please Enter Ending Time</div>
@@ -204,7 +204,7 @@
                 </div>
               </md-input-container>
             </div>
-            <button type="submit" class="btn btn-info">Add Mechanica Event</button>
+            <button type="submit" class="btn btn-info">Save Mechanica Event</button>
           </form>
         </md-content>
       </md-tab>
@@ -219,4 +219,13 @@
       </md-tab>
     </md-tabs>
   </md-content>
+  <div class="fullW">
+    <h3>All Events</h3>
+    <div ng-repeat="eventCategory in eventCategories">
+      <h5>{{eventCategory.name}}</h5>
+      <p ng-repeat="event in eventCategory.events" class="colorg">
+        {{event.event.name}} - <a href="#" ng-click="editEvent(event.event)">Edit</a>
+      </p>
+    </div>
+  </div>
 </div>

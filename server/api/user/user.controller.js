@@ -46,16 +46,18 @@ export function index(req, res) {
  */
 export function create(req, res) {
 
-  if(req.body.rollNumber)
+  if(req.body.rollNumber){
     var rollNumber = req.body.rollNumber.split(' ');
-    rollNumber = rollNumber.join('').toLowerCase();
-    House.findOne({ team: { $elemMatch: req.body.rollNumber}})
+    rollNumber = rollNumber.join('').toUpperCase();
+    console.log(rollNumber,222222);
+    House.findOne({ "team.member": rollNumber})
     .exec()
     .then(house=>{
 
       var newUser = new User(req.body);
+      console.log(house, 32333333333);
 
-      if(house.length)
+      if(house)
         newUser.house = house._id;
 
       newUser.provider = 'local';
@@ -69,6 +71,9 @@ export function create(req, res) {
         })
         .catch(validationError(res));
     })
+  }
+  else
+    return res.send(400);
 }
 
 /**
