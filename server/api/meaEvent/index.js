@@ -9,10 +9,10 @@ var router = express.Router();
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);
-router.post('/', controller.create);
-router.put('/:id', controller.upsert);
+router.post('/', auth.hasRole('admin'), controller.create);
+router.put('/:id', auth.hasRole('admin'), controller.upsert);
 router.put('/register/:eventId', auth.isAuthenticated(), controller.register);
-router.patch('/:id', controller.patch);
-router.delete('/:id', controller.destroy);
+// router.patch('/:id',auth.hasRole('admin') controller.patch);
+router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 
 module.exports = router;

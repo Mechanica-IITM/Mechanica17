@@ -4,6 +4,7 @@ export default function($routeProvider) {
   'ngInject';
   $routeProvider
     .when('/game', {
-      template: '<game></game>'
+      template: '<game></game>',
+      authenticate:true
     });
 }

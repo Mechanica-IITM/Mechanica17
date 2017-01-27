@@ -6,7 +6,7 @@ const ngRoute = require('angular-route');
 import routes from './contactUs.routes';
 
 export class ContactUsComponent {
-  /*@ngInject*/
+
   constructor() {
     this.cores = [
       {

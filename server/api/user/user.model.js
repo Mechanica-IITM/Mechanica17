@@ -34,6 +34,7 @@ var UserSchema = new Schema({
       }
     }
   },
+  highscore: {type:Number, default:0},
   rollNumber: {type:String,uppercase:true},
   phoneNumber: {type:String},
   // meaEvents: [{meaEvent:{type:Schema.Types.ObjectId,ref:'MeaEvent'},score:Number}],

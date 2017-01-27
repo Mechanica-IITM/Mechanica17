@@ -133,7 +133,6 @@
 	width: 100%;
 	text-align: center;
 	text-transform: uppercase;
-	pointer-events: none;
 }
 
 .message--replay {
@@ -141,7 +140,7 @@
 	bottom: 40vh;
 	display: none;
 	text-indent: 0.5em;
-	letter-spacing: 0.5em;
+	letter-spacing: 4px;
 	color: #d1b790;
 }
 
@@ -150,7 +149,7 @@
 	font-size: 0.85em;
 	bottom: 8vh;
 	letter-spacing: 0.2em;
-	color: #68c3c0;
+	color: #00514f;
 }
 
 .message--instructions span {

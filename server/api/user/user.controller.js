@@ -76,6 +76,19 @@ export function create(req, res) {
     return res.send(400);
 }
 
+export function setHighScore(req, res, next){
+  if(req.user.highscore<req.body.score)
+    req.user.highscore = req.body.score;
+  req.user.save()
+  .then(respondWithResult(res))
+  .catch(handleError(res));
+}
+
+export function getHighScore(req, res, next){
+  User.find({}, 'name highscore college').sort({highscore:-1}).limit(3)
+  .then(respondWithResult(res))
+  .catch(handleError(res));  
+}
 /**
  * Get a single user
  */

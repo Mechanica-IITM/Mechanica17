@@ -27,6 +27,9 @@ color: #666;
 .colorg{
  color: rgba(0,0,0,0.6);
 }
+.colorcr{
+  color: #d1b790;
+}
 .colorw{
  color: white !important;
 }
