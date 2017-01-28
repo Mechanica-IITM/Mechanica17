@@ -9,7 +9,7 @@ export class MainController {
     this.$http = $http;
     this.$scope = $scope;
     this.socket = socket;
-    this.isLoggedIn = Auth.isLoggedInSync;
+    this.isLoggedIn = Auth.isLoggedInSync();
     $scope.user = Auth.getCurrentUserSync();
 
     $http.get('/api/users/getHighScore')

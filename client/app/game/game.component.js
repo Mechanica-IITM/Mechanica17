@@ -7,8 +7,8 @@ import routes from './game.routes';
 
 export class GameComponent {
 
-  static $inject = ['$http'];  
-  constructor($http) {
+  static $inject = ['$http', '$scope'];  
+  constructor($http, $scope) {
 
     $http.get('/api/users/getHighScore')
     .then(res =>{

@@ -53,6 +53,8 @@
 @import 'main/main.css';
 @import 'sponsors/sponsors.css';
 @import '../components/css/commonclasses.css';
+@import '../components/css/game.css';
+@import '../components/css/styles.css';
 @import '../components/footer/footer.css';
 @import '../components/game/game.css';
 @import '../components/game/styles.css';

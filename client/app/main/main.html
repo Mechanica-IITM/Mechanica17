@@ -1,16 +1,16 @@
 <div class="fullW thumbs_wrap fullH">
   <div class="header" style="z-index:10">
-    <h1><span>2017</span>Mechanica</h1>
+    <h1><img src="/assets/images/logoMechanica.png" height="60px"/></h1>
     <h2 style="letter-spacing:4px" class="colorlg">a fest for true mechanical engineers</h2>
     <h2 style="letter-spacing:0px;font-size:12px" class="colorw">March 3 - 5</h2>
   </div>
   <div class="world fullH thumbs_wrap" id="world"></div>
 
-  <div class="message message--replay" style="z-index:10;top:50vh;display:block">
+  <div class="message message--replay hideInMobile" style="z-index:10;top:50vh;display:block">
     <a href="/game" style="text-decoration:none" class="colorw"><span ng-show="$ctrl.isLoggedIn">Login</span><span ng-show="!$ctrl.isLoggedIn">Click</span> to Play</a><br/>
-    <small>Make high score and win exciting prizes</small>
+    <small>Make high score in a week and win exciting prizes</small>
   </div>
-  <div style="top:40px;position:fixed" class="padding10 colorcr">
+  <div style="top:40px;position:fixed" class="padding10 colorcr hideInMobile">
     <h3>High Scores</h3>
     <p ng-repeat="user in highscores">
       {{user.name}} - {{user.highscore | number:0}}
