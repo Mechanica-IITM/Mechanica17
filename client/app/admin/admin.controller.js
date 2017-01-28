@@ -159,7 +159,8 @@ export default class AdminController {
         $http.post('/api/eventCategorys',
           { 
             name:$scope.CategoryName,
-            info:$scope.CategoryInfo
+            info:$scope.CategoryInfo,
+            imgURL:$scope.CategoryImage
           }
         ).then(function(response){
           location.reload();

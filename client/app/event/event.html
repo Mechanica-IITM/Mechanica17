@@ -1,1 +1,55 @@
-<div>This is the event view.</div>
+<section class="fullW thumbs_wrap" style="min-height:100vh;">
+	<div class="fullW paddingLR thumbs_wrap" style="margin-top:50px">
+		<h2 class="centric colorlg centric">Welcome to Events </h2>
+		<p class="centric colorlg">Will be updated soon</p>
+	  <md-card style="margin-top: 5vh;">
+        <img ng-src="{{imagePath}}" class="md-card-image card-image" alt="">
+        <md-card-title>
+          <md-card-title-text>
+            <h2 class="md-headline md-display-2">{{event.name}}</h2>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+  				<md-tabs md-dynamic-height="" md-border-bottom="">
+				      <md-tab label="about">
+				        <md-content class="md-padding">
+				          <h3>Info</h3>
+				          <p ng-repeat="info in event.info">{{info}}</p>
+				          <h3>Awards</h3>
+				          <p ng-repeat="award in event.awards">{{award}}</p>
+						  <h3>Venue</h3>
+				          <p>{{event.venue}}</p>
+
+				        </md-content>
+				      </md-tab>
+				      <md-tab label="faq">
+				        <md-content class="md-padding">
+				          <p ng-repeat="faq in event.faq">{{faq}}</p>
+				        </md-content>
+				      </md-tab>
+				      <md-tab label="rules">
+				        <md-content class="md-padding">
+				          <p ng-repeat="rule in event.rules">{{rule}}</p>
+				        </md-content>
+				      </md-tab>
+				       <md-tab label="contact">
+				        <md-content class="md-padding">
+				          <p ng-repeat="contact in event.contact">{{contact}}</p>
+				        </md-content>
+				      </md-tab>
+				       <md-tab label="problem statement">
+				        <md-content class="md-padding">
+				          <p ng-repeat="problem in event.problemStatement">{{problem}}</p>
+				        </md-content>
+				      </md-tab>
+				       <md-tab label="registration">
+				        <md-content class="md-padding">
+				        	<label>Click on the button to register for the event</label>
+				        	<md-button class="md-warn md-raised" ng-hide="register" ng-click="registered()">Register</md-button>
+				        </md-content>
+				      </md-tab>
+				    </md-tabs>
+        </md-card-content>
+      </md-card>	
+	</div>
+</section>

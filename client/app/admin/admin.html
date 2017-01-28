@@ -35,6 +35,13 @@
                 <div ng-message="required">Please Enter Event Category Info</div>
               </div>
             </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Event Category Picture Url</label>
+              <input type="text" name="poster" ng-model="CategoryImage">
+              <small>You can upload picture in google drive and share the link here. Please compress the image before uploading.</small>   
+            </md-input-container>
+
             <button type="submit" class="btn btn-primary">Add Event Category</button>
           </form>
         </md-content>
@@ -92,6 +99,19 @@
                 <div ng-message="required">Please Enter Event Rules</div>
               </div>
             </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Contact Details</label>
+              <textarea ng-model="event.contact"></textarea> 
+                <small>Enter contact details.</small> 
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Problem Statement</label>
+              <textarea ng-model="event.problemStatement"></textarea> 
+                <small>Enter problem statement.</small> 
+            </md-input-container>
+
             <md-input-container>
               <md-select placeholder="Assign Category" ng-model="event.eventCategory" required>
                 <md-option ng-value="eventCategory._id" ng-repeat="eventCategory in eventCategories">{{eventCategory.name}}</md-option>

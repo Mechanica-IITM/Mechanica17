@@ -14,6 +14,8 @@ var EventSchema = new mongoose.Schema({
   venue: String,
   attachment: String,
   poster: String,
+  problemStatement:String,
+  contact:String,
   active: Boolean,
   eventCategory: {type: mongoose.Schema.Types.ObjectId, ref:'EventCategory'},
   registered:[{user:{type:mongoose.Schema.Types.ObjectId,ref:'User'}}]
