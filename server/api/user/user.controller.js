@@ -2,6 +2,7 @@
 
 import User from './user.model';
 import House from '../house/house.model';
+import validator from 'validator';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 
@@ -93,6 +94,9 @@ export function getHighScore(req, res, next){
  * Get a single user
  */
 export function show(req, res, next) {
+  if(!validator.isMongoId(req.params.id+''))
+   return res.status(400).send("Invalid Id");
+
   var userId = req.params.id;
 
   return User.findById(userId).exec()
@@ -110,6 +114,9 @@ export function show(req, res, next) {
  * restriction: 'admin'
  */
 export function destroy(req, res) {
+  if(!validator.isMongoId(req.params.id+''))
+    return res.status(400).send("Invalid Id");
+
   return User.findByIdAndRemove(req.params.id).exec()
     .then(function() {
       res.status(204).end();
@@ -121,6 +128,9 @@ export function destroy(req, res) {
  * Change a users password
  */
 export function changePassword(req, res) {
+  if(!validator.isMongoId(req.user._id+''))
+    return res.status(400).send("Invalid Id");
+
   var userId = req.user._id;
   var oldPass = String(req.body.oldPassword);
   var newPass = String(req.body.newPassword);
@@ -144,6 +154,8 @@ export function changePassword(req, res) {
  * Get my info
  */
 export function me(req, res, next) {
+  if(!validator.isMongoId(req.user._id+''))
+    return res.status(400).send("Invalid Id");
   var userId = req.user._id;
 
   return User.findOne({ _id: userId }, '-salt -password').populate('house').exec()

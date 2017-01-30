@@ -12,6 +12,7 @@
 
 import jsonpatch from 'fast-json-patch';
 import MeaEvent from './meaEvent.model';
+import validator from 'validator';
 import House from '../house/house.model';
 import User from '../user/user.model';
 
@@ -74,6 +75,9 @@ export function index(req, res) {
 
 // Gets a single MeaEvent from the DB
 export function show(req, res) {
+  if(!validator.isMongoId(req.params.id+''))
+    return res.status(400).send("Invalid Id");
+
   return MeaEvent.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
@@ -116,6 +120,8 @@ export function patch(req, res) {
 
 export function register(req, res) {
 
+  if(!validator.isMongoId(req.params.eventId+''))
+    return res.status(400).send("Invalid Id");
   // Add user to event
   return MeaEvent.findOneAndUpdate({ _id:req.params.eventId },{$push:{users:{user:req.user._id,score:0}}}, {upsert: true, setDefaultsOnInsert: true}).exec()
     .then(function(event){
