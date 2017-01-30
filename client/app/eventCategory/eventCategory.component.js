@@ -7,15 +7,22 @@ import routes from './eventCategory.routes';
 
 export class EventCategoryComponent {
   /*@ngInject*/
-  static $inject=['$scope','$http','$location'];
-  constructor($scope,$http,$location) {
+  static $inject=['$scope','$http','$location', '$q'];
+  constructor($scope,$http,$location, $q) {
+    this.$q = $q;
+    this.$scope = $scope;
+
     $http.get('/api/eventCategorys/')
       .then(response => {
-        console.log(response.data);
         $scope.eventCategories = response.data;
         for (var i = $scope.eventCategories.length - 1; i >= 0; i--) {
-          $scope.eventCategories[i].info=$scope.eventCategories[i].info.split('\n');
+          $scope.eventCategories[i].info = $scope.eventCategories[i].info.split('\n');
         }
+
+        // Replaces images if they dont exist in recurrence
+        this.recur($scope.eventCategories, 0);
+
+
       });
 
     $scope.imagePath="/assets/images/gear.png";
@@ -23,6 +30,28 @@ export class EventCategoryComponent {
       $scope.goToEvent=function(id) {
         $location.path('event/' +id);
       }
+  }
+
+  checkImageAndReplace(givenUrl, defaultUrl, cb){
+    if(!givenUrl)
+      return cb(defaultUrl);
+    else{
+      var src = givenUrl;
+      isImage(givenUrl, this.$q).then(function(response){
+        if(!response)
+          src = defaultUrl;
+        return cb(src);
+      })
+    }
+  }
+
+  recur(eventCategories, j){
+    this.checkImageAndReplace(eventCategories[j].imgURL, '/assets/images/eventBgDefault.jpg', src=>{
+      this.$scope.eventCategories[j].poster = src;
+      j++;
+      if(j<eventCategories.length)
+        this.recur(eventCategories, j)
+    })
   }
 
 
@@ -33,6 +62,25 @@ export default angular.module('mechanicaApp.eventCategory', [ngRoute])
   .component('eventCategory', {
     template: require('./eventCategory.html'),
     controller: EventCategoryComponent,
-    controllerAs: 'eventCategoryCtrl'
+    controllerAs: 'vm'
   })
   .name;
+
+
+// Checks if image exists at given url
+function isImage(src, $q) {
+
+    var deferred = $q.defer();
+
+    var image = new Image();
+    image.onerror = function() {
+        deferred.resolve(false);
+    };
+    image.onload = function() {
+        deferred.resolve(true);
+    };
+    image.src = src;
+
+    return deferred.promise;
+};
+

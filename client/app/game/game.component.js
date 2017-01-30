@@ -872,10 +872,6 @@ export class GameComponent {
         game.speed = game.baseSpeed * game.planeSpeed;
 
       }else if(game.status=="gameover"){
-        $http.post('/api/users/setHighScore',{score: game.distance})
-        .then(res =>{
-          console.log(res);
-        })
         game.speed *= .99;
         airplane.mesh.rotation.z += (-Math.PI/2 - airplane.mesh.rotation.z)*.0002*deltaTime;
         airplane.mesh.rotation.x += 0.0003*deltaTime;
@@ -883,6 +879,10 @@ export class GameComponent {
         airplane.mesh.position.y -= game.planeFallSpeed*deltaTime;
 
         if (airplane.mesh.position.y <-200){
+          $http.post('/api/users/setHighScore',{score: game.distance})
+          .then(res =>{
+            console.log(res);
+          })
           showReplay();
           game.status = "waitingReplay";
 

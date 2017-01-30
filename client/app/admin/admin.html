@@ -28,13 +28,13 @@
                 <div ng-message="required">Please Enter Event Category Name</div>
               </div>
             </md-input-container>
-            <md-input-container class="md-block">
-              <textarea ng-model="CategoryInfo" name="CategoryInfo" rows="3" md-select-on-focus="" required></textarea>
+            <!-- <md-input-container class="md-block">
               <label>Category Info</label>
+              <input type="text" name="CategoryInfo" ng-model="CategoryInfo" required>
               <div ng-messages="eventCategoryForm.CategoryInfo.$error">
                 <div ng-message="required">Please Enter Event Category Info</div>
               </div>
-            </md-input-container>
+            </md-input-container> -->
 
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Event Category Picture Url</label>
@@ -65,7 +65,8 @@
 
             <md-input-container class="col-sm-6" flex-gt-sm="">
               <label>Venue</label>
-              <input type="text" name="venue" ng-model="event.venue" required>        
+              <input type="text" name="venue" ng-model="event.venue" required> 
+              <small>If not decided, please type - Will be updated soon</small>       
               <div ng-messages="eventForm.venue.$error">
               <div ng-message="required">Please Enter Venue</div>
               </div>
@@ -92,22 +93,22 @@
                 <div ng-message="required">Please Enter Event FAQ</div>
               </div>
             </md-input-container>
-            <md-input-container class="col-md-12">
+            <md-input-container class="col-md-6">
               <textarea ng-model="event.rules" name="rules" md-select-on-focus="" required></textarea>
-              <label for="rules">Rules</label>
+              <label for="rules">Rules/Terms</label>
               <div ng-messages="eventForm.rules.$error">
                 <div ng-message="required">Please Enter Event Rules</div>
               </div>
             </md-input-container>
 
-            <md-input-container class="md-block" flex-gt-sm="">
+            <md-input-container class="col-md-6" flex-gt-sm="">
               <label>Contact Details</label>
               <textarea ng-model="event.contact"></textarea> 
                 <small>Enter contact details.</small> 
             </md-input-container>
 
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>Problem Statement</label>
+            <md-input-container class="col-md-12" flex-gt-sm="">
+              <label>Problem Statement Url (Google Drive link)</label>
               <textarea ng-model="event.problemStatement"></textarea> 
                 <small>Enter problem statement.</small> 
             </md-input-container>
@@ -251,7 +252,7 @@
     <div ng-repeat="eventCategory in eventCategories">
       <h5>{{eventCategory.name}}</h5>
       <p ng-repeat="event in eventCategory.events" class="colorlg">
-        {{event.event.name}} - <a href="#" ng-click="editEvent(event.event)">Edit</a>
+        <a href="/event/{{event._id}}">{{event.event.name}}</a> - <a href="#" ng-click="editEvent(event.event)">Edit</a>
       </p>
     </div>
   </div>

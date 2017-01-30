@@ -83,7 +83,14 @@ video {
 .navIcon img{
   width: 140px;
   height: auto;
+  -webkit-animation: navIcon 4s linear infinite;
   animation: navIcon 4s linear infinite;
+}
+
+@-webkit-keyframes navIcon{
+  0%{transform:rotate(0deg)}
+  50%{transform:rotate(180deg)}
+  100%{transform:rotate(360deg)}
 }
 @keyframes navIcon{
   0%{transform:rotate(0deg)}

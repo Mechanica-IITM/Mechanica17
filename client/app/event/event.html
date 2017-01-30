@@ -1,24 +1,22 @@
 <section class="fullW thumbs_wrap" style="min-height:100vh;">
 	<div class="fullW paddingLR thumbs_wrap" style="margin-top:50px">
-		<h2 class="centric colorlg centric">Welcome to Events </h2>
-		<p class="centric colorlg">Will be updated soon</p>
-	  <md-card style="margin-top: 5vh;">
-        <img ng-src="{{imagePath}}" class="md-card-image card-image" alt="">
-        <md-card-title>
-          <md-card-title-text>
-            <h2 class="md-headline md-display-2">{{event.name}}</h2>
-          </md-card-title-text>
-        </md-card-title>
-        <md-card-content>
+	  <md-card style="margin-top:10px">
+        <h2 class="md-headline colorg" style="padding:0px 10px">{{event.name}}</h2>
+        <div class="fullW thumbs_wrap bgImage" style="height:400px;background-image:url({{poster}});opacity:1"></div>
+        <md-card-content style="padding:0px 10px">
   				<md-tabs md-dynamic-height="" md-border-bottom="">
 				      <md-tab label="about">
 				        <md-content class="md-padding">
 				          <h3>Info</h3>
 				          <p ng-repeat="info in event.info">{{info}}</p>
-				          <h3>Awards</h3>
-				          <p ng-repeat="award in event.awards">{{award}}</p>
-						  <h3>Venue</h3>
-				          <p>{{event.venue}}</p>
+				          <div class="fullW thumbs_wrap" ng-show="event.awards.length">
+					          <h3>Awards</h3>
+					          <p ng-repeat="award in event.awards">{{award}}</p>
+					      </div>
+					      <div class="fullW thumbs_wrap" ng-show="event.awards.venue">
+							  <h3>Venue</h3>
+					          <p>{{event.venue}}</p>
+					      </div>
 
 				        </md-content>
 				      </md-tab>
@@ -27,7 +25,7 @@
 				          <p ng-repeat="faq in event.faq">{{faq}}</p>
 				        </md-content>
 				      </md-tab>
-				      <md-tab label="rules">
+				      <md-tab label="rules/terms" ng-show="event.rules.length">
 				        <md-content class="md-padding">
 				          <p ng-repeat="rule in event.rules">{{rule}}</p>
 				        </md-content>
@@ -37,15 +35,16 @@
 				          <p ng-repeat="contact in event.contact">{{contact}}</p>
 				        </md-content>
 				      </md-tab>
-				       <md-tab label="problem statement">
+				       <md-tab label="problem statement" ng-show="event.rules.length">
 				        <md-content class="md-padding">
-				          <p ng-repeat="problem in event.problemStatement">{{problem}}</p>
+				         <a href="{{event.problemStatement}}">Click here</a> to open the problem statement
 				        </md-content>
 				      </md-tab>
 				       <md-tab label="registration">
 				        <md-content class="md-padding">
 				        	<label>Click on the button to register for the event</label>
-				        	<md-button class="md-warn md-raised" ng-hide="register" ng-click="registered()">Register</md-button>
+				        	<md-button class="md-warn md-raised" ng-click="register()" ng-disabled="isRegistered">Register<span ng-show="isRegistered">ed</span></md-button>
+				        	<p>If this is a team event, it is enough if one member of the team registers here</p>
 				        </md-content>
 				      </md-tab>
 				    </md-tabs>

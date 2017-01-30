@@ -9,7 +9,9 @@ export class MainController {
     this.$http = $http;
     this.$scope = $scope;
     this.socket = socket;
-    this.isLoggedIn = Auth.isLoggedInSync();
+    Auth.isLoggedIn(loggedIn =>{
+      this.isLoggedIn = loggedIn;
+    });
     $scope.user = Auth.getCurrentUserSync();
 
     $http.get('/api/users/getHighScore')

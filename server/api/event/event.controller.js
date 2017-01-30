@@ -60,6 +60,7 @@ function handleEntityNotFound(res) {
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
   return function(err) {
+    console.log(err);
     res.status(statusCode).send(err);
   };
 }
@@ -73,6 +74,15 @@ export function index(req, res) {
 
 // Gets a single Event from the DB
 export function show(req, res) {
+  console.log(req.params.id);
+  return Event.findById(req.params.id).exec()
+    .then(handleEntityNotFound(res))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
+// Gets a single Event from the DB
+export function isRegistered(req, res) {
   return Event.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(event => {
@@ -82,7 +92,7 @@ export function show(req, res) {
           return true;
         return false;
       })
-      return res.json({event:event, isRegistered: isRegistered});
+      return res.json(isRegistered);
     })
     .catch(handleError(res));
 }
