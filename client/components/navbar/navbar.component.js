@@ -13,10 +13,10 @@ export class NavbarComponent {
     this.isAdmin = Auth.isAdminSync;
     this.getCurrentUser = Auth.getCurrentUserSync;
 
-    this.audio = new Audio('assets/images/audio.mp3');
-    this.audio.loop = true;
-    this.audio.play();
-    this.audio.isPlaying = true;
+    // this.audio = new Audio('assets/images/audio.mp3');
+    // this.audio.loop = true;
+    // this.audio.play();
+    // this.audio.isPlaying = true;
 
   }
 
