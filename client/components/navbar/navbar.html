@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-fixed-top" style="background:rgb(0, 41, 45);border:0px">
+<div class="navbar navbar-default navbar-fixed-top" style="background:#d8c66a;border:0px">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle" type="button" ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed">
@@ -14,17 +14,20 @@
         <!-- <li ng-repeat="item in $ctrl.menu" ng-class="{active: $ctrl.isActive(item.link)}">
             <a ng-href="{{item.link}}">{{item.title}}</a>
         </li> -->
-        <li ng-show="$ctrl.isAdmin()" ng-class="{active: $ctrl.isActive('/admin')}" style="padding:20px 0px 0px"><a href="/admin" style="padding:5px">Admin</a></li>
+        <li ng-show="$ctrl.isAdmin()" style="padding:10px 0px 0px"><a href="/admin" >Admin</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
 
-        <li style="padding:15px"><a href="/" style="padding:5px 10px;" class="colorw">Home</a></li>
+        <li style="padding:15px"><a href="/" style="padding:5px 10px;">Home</a></li>
         <li ng-hide="$ctrl.isLoggedIn()" ng-class="{active: $ctrl.isActive('/signup')}" style="padding:15px"><a href="/signup" style="padding:5px 10px;border:1px solid white;border-radius:5px">Register</a></li>
         <li ng-hide="$ctrl.isLoggedIn()" ng-class="{active: $ctrl.isActive('/login')}" style="padding:15px"><a href="/login" style="padding:5px 10px;border:1px solid white;border-radius:5px">Login</a></li>
-        <li ng-show="$ctrl.isLoggedIn()" style="padding:15px"><p class="navbar-text colorw" style="padding:5px 10px;margin:0px">Hello {{ $ctrl.getCurrentUser().name }}</p> </li>
+        <li ng-show="$ctrl.isLoggedIn()" style="padding:15px"><p class="navbar-text" style="padding:5px 10px;margin:0px">Hello {{ $ctrl.getCurrentUser().name }}</p> </li>
         <!-- <li ng-show="$ctrl.isLoggedIn()" ng-class="{active: $ctrl.isActive('/settings')}" style="padding:15px"><a href="/settings" style="padding:5px 10px;"><span class="glyphicon glyphicon-cog"></span></a></li> -->
-        <li ng-show="$ctrl.isLoggedIn()" style="padding:15px" style="padding:5px 10px;"><a href="/logout" style="padding:5px 10px;">Logout</a></li>
+        <li ng-show="$ctrl.isLoggedIn()" style="padding:15px"><a href="/logout" style="padding:5px 10px;">Logout</a></li>
+        <li class="cursorp" ng-click="$ctrl.playControl()" style="padding:15px">
+          <a href="" style="padding:5px 10px;"><img src="assets/images/sound.png" width="20px"/></a>
+        </li>
       </ul>
     </div>
   </div>

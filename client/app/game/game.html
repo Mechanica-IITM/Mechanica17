@@ -1,23 +1,23 @@
 <div class="fullW fullH thumbs_wrap" id="gameHolder">
 	<div class="header">
 		<h1><img src="/assets/images/logoMechanica.png" height="60px"/></h1>
-	    <h2 style="letter-spacing:4px" class="colorlg">a fest for true mechanical engineers</h2>
-	    <h2 style="letter-spacing:0px;font-size:12px" class="colorw">March 3 - 5</h2>
+	    <h2 style="letter-spacing:4px" class="colorbl">a fest for true mechanical engineers</h2>
+	    <h2 style="letter-spacing:0px;font-size:12px" class="colorbl">March 3 - 5</h2>
 		<div class="score" id="score">
 			<div class="score__content" id="level">
-				<div class="score__label">level</div>
-				<div class="score__value score__value--level" id="levelValue">1</div>
+				<div class="score__label colorcr">level</div>
+				<div class="score__value score__value--level colorcr" id="levelValue">1</div>
 				<svg class="level-circle" id="levelCircle" viewbox="0 0 200 200">
-					<circle id="levelCircleBgr" r="80" cx="100" cy="100" fill="none" stroke="#d1b790" stroke-width="24px" />
-					<circle id="levelCircleStroke" r="80" cx="100" cy="100" fill="none" #f25346 stroke="#68c3c0" stroke-width="14px" stroke-dasharray="502" />
+					<circle id="levelCircleBgr" r="80" cx="100" cy="100" fill="none" stroke="#8a775b" stroke-width="24px" />
+					<circle id="levelCircleStroke" r="80" cx="100" cy="100" fill="none" #8a775b stroke="#8a775b" stroke-width="14px" stroke-dasharray="502" />
 				</svg>
 			</div>
 			<div class="score__content" id="dist">
-				<div class="score__label">distance</div>
-				<div class="score__value score__value--dist" id="distValue">000</div>
+				<div class="score__label colorcr">distance</div>
+				<div class="score__value score__value--dist colorcr" id="distValue">000</div>
 			</div>
 			<div class="score__content" id="energy">
-				<div class="score__label">energy</div>
+				<div class="score__label colorcr">energy</div>
 				<div class="score__value score__value--energy" id="energyValue">
 					<div class="energy-bar" id="energyBar"></div>
 				</div>
@@ -29,10 +29,11 @@
 	    <p ng-repeat="user in highscores">
 	      {{user.name}} - {{user.highscore | number:0}}
 	      <br/>
-	      <small class="colorlg">{{user.college}}</small>
+	      <span class="colorbl sizeten">{{user.college}}</span>
 	    </p>
 	</div>
 	<div class="world" id="worldGame"></div>
-	<div class="message message--replay" id="replayMessage">Click to Replay</div>
-	<div class="message message--instructions" id="instructions">Grab the blue pills<span>avoid the red ones</span></div>
+	<div class="message message--replay colorcr" id="replayMessage">Click to Replay</div>
+	<div class="message message--instructions colorw" id="instructions">Grab the blue pills<span class="colorlg">avoid the Brown ones</span></div>
+	<div style="position:absolute;bottom:10px;" class="centric fullW colorw"><h5>Game powered by Tympanus.net</h5></div> 
 </div>

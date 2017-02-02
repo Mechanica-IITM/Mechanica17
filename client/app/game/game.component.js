@@ -16,13 +16,13 @@ export class GameComponent {
     })
     //COLORS
     var Colors = {
-        red:0xf25346,
+        red:0x59332e,//0xd8d0d1,
         white:0xd8d0d1,
         brown:0x59332e,
         brownDark:0x23190f,
         pink:0xF5986E,
-        yellow:0xf4ce93,
-        blue:0x68c3c0,
+        yellow:0x68c3c0,
+        blue:0x003300,
 
     };
 
@@ -1036,7 +1036,6 @@ export default angular.module('mechanicaApp.game', [ngRoute])
   .config(routes)
   .component('game', {
     template: require('./game.html'),
-    controller: GameComponent,
-    controllerAs: 'gameCtrl'
+    controller: GameComponent
   })
   .name;

@@ -1,8 +1,10 @@
+
 body {
   margin: 0;
   font-family: 'Montserrat'; 
-  background: -webkit-linear-gradient(#002a2d, #000519);
-  background: linear-gradient(#002a2d, #000519);
+  background: #d4c962;
+  background: linear-gradient(#d4c962, #f7aaaa);
+  background: linear-gradient(#d4c962, #f7aaaa);
   float: left;
   position: relative;
   width: 100%;
@@ -21,10 +23,10 @@ video {
     top: 50%;
     left: 50%;
     min-width: 100%;
-    min-height: 100%;
+    min-height: 100vh;
     width: auto;
     height: auto;
-    z-index: -100;
+    z-index: 100000;
     transform: translateX(-50%) translateY(-50%);
  background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;
   background-size: cover;
@@ -101,7 +103,7 @@ video {
 .navName{
   position: absolute;
   height: 100%;
-  color: #d1b790;
+  color: black;
   font-weight: bold;
   top:0px;
 }

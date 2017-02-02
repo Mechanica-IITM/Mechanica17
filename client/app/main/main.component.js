@@ -9,6 +9,13 @@ export class MainController {
     this.$http = $http;
     this.$scope = $scope;
     this.socket = socket;
+
+    // setTimeout(()=>{
+    //   console.log('here');
+    //   var video = document.getElementById("bgvid");
+    //   video.className += "animated rotateOut";
+    // }, 16200);
+
     Auth.isLoggedIn(loggedIn =>{
       this.isLoggedIn = loggedIn;
     });
@@ -21,12 +28,13 @@ export class MainController {
     // All code related to game in dashboard
     //COLORS
     var Colors = {
-        red:0xf25346,
+        red:0x59332e,//0xd8d0d1,
         white:0xd8d0d1,
-        pink:0xF5986E,
         brown:0x59332e,
         brownDark:0x23190f,
-        blue:0x68c3c0,
+        pink:0xF5986E,
+        yellow:0x68c3c0,
+        blue:0x003300,
     };
 
     // THREEJS RELATED VARIABLES
@@ -519,6 +527,7 @@ export class MainController {
         this.socket.syncUpdates('event', this.events);
       });
   }
+
 
   registerEvent(event)
   {
