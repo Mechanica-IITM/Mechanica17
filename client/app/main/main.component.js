@@ -11,18 +11,18 @@ export class MainController {
     this.socket = socket;
     this.showPage = true;
 
-    setTimeout(()=>{
-      console.log('here');
-      this.audio = new Audio('assets/images/audio.mp3');
-      this.audio.loop = true;
-      this.audio.play();
-      this.audio.isPlaying = true;
-      this.showPage = false;
-      var video = document.getElementById("bgvid");
-      var hider = document.getElementById('hider');
-      hider.className = 'fullW thumbs_wrap fullH';
-      video.className += "animated fadeOut";
-    }, 16200);
+    // setTimeout(()=>{
+    //   console.log('here');
+    //   this.audio = new Audio('assets/images/audio.mp3');
+    //   this.audio.loop = true;
+    //   this.audio.play();
+    //   this.audio.isPlaying = true;
+    //   this.showPage = false;
+    //   var video = document.getElementById("bgvid");
+    //   var hider = document.getElementById('hider');
+    //   hider.className = 'fullW thumbs_wrap fullH';
+    //   video.className += "animated fadeOut";
+    // }, 16200);
 
     Auth.isLoggedIn(loggedIn =>{
       this.isLoggedIn = loggedIn;
