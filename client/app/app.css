@@ -52,6 +52,7 @@
 @import 'hospi/hospi.css';
 @import 'main/main.css';
 @import 'sponsors/sponsors.css';
+@import 'starter/starter.css';
 @import '../components/css/commonclasses.css';
 @import '../components/css/game.css';
 @import '../components/css/styles.css';
