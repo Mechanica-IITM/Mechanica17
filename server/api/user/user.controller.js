@@ -92,6 +92,13 @@ export function getHighScore(req, res, next){
   .catch(handleError(res));  
 }
 
+export function setScoreZero(req, res, next){
+  console.log('here');
+  User.update({}, {$set:{highscore:0}}, {multi:true})
+  .then(respondWithResult(res))
+  .catch(handleError(res));
+}
+
 export function contacts(req, res){
   var contacts =  [
       {

@@ -10,11 +10,11 @@ export class MainController {
     this.$scope = $scope;
     this.socket = socket;
 
-    // setTimeout(()=>{
-    //   console.log('here');
-    //   var video = document.getElementById("bgvid");
-    //   video.className += "animated rotateOut";
-    // }, 16200);
+    setTimeout(()=>{
+      console.log('here');
+      var video = document.getElementById("bgvid");
+      video.className += "animated fadeOut";
+    }, 16200);
 
     Auth.isLoggedIn(loggedIn =>{
       this.isLoggedIn = loggedIn;

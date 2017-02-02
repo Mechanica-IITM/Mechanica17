@@ -172,6 +172,14 @@ export default class AdminController {
       }
     };
 
+    $scope.setScoreZero = function(){
+      console.log('here');
+      $http.get('/api/users/setScoreZero')
+      .then(function(response){
+        console.log(response);
+      });
+    }
+
     
   }
 
