@@ -34,6 +34,7 @@ import game from './game/game.component';
 import hospi from './hospi/hospi.component';
 import sponsors from './sponsors/sponsors.component';
 import main from './main/main.component';
+import launch from './launch/launch.component';
 import starter from './starter/starter.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
@@ -42,7 +43,7 @@ import socket from '../components/socket/socket.service';
 import './app.css';
 
 angular.module('mechanicaApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngRoute,
-    uiBootstrap,ngAnimate,ngAria,_Auth, starter, account, ngMaterial, ngMessages, admin, navbar, footer, main, contactUs, sponsors, event, eventCategory, game, hospi, constants, socket, util
+    uiBootstrap,ngAnimate,ngAria,_Auth, starter, launch, account, ngMaterial, ngMessages, admin, navbar, footer, main, contactUs, sponsors, event, eventCategory, game, hospi, constants, socket, util
     ])
   .config(routeConfig)
   .directive('userCard', function () {

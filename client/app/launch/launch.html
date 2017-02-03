@@ -1,0 +1,69 @@
+<video id="bgvid" autoplay>
+  <source src="assets/images/video.mp4" type="video/mp4">
+</video>
+<div class="fullW thumbs_wrap fullH hider" id="hider" style="z-index:1000">
+  <div class="header" style="z-index:10">
+    <h1><img src="/assets/images/logoMechanica.png" height="60px"/></h1>
+    <h2 style="letter-spacing:4px" class="colorbl">a fest for true mechanical engineers</h2>
+    <h2 style="letter-spacing:0px;font-size:12px" class="colorbl">March 3 - 5</h2>
+  </div>
+  <div class="world fullH thumbs_wrap" id="world"></div>
+
+  <div class="message message--replay hideInMobile" style="z-index:10;top:50vh;display:block">
+    <a href="/game" style="text-decoration:none"><span ng-show="!$ctrl.isLoggedIn">Login</span><span ng-show="$ctrl.isLoggedIn">Click</span> to Play</a><br/>
+    <p class="sizeten colorcr">Make high score in a week and win exciting prizes</p>
+  </div>
+  <div style="top:40px;position:fixed" class="padding10 colorcr hideInMobile">
+    <h3>High Scores</h3>
+    <p ng-repeat="user in highscores">
+      {{user.name}} - {{user.highscore | number:0}}
+      <br/>
+      <span class="colorbl sizeten">{{user.college}}</span>
+    </p>
+  </div>
+  <div style="position:absolute;bottom:10px;" class="centric fullW colorw"><h5>Game powered by Tympanus.net</h5></div>
+
+  <div class="fullW thumbs_wrap showInMobile" style="top:30vh">
+    <div class="fullW centric"><a href="/eventCategories" style="font-weight:bold;color:white">Events & Workshops</a></div>
+    <div class="fullW centric"><a href="/hospi" style="font-weight:bold;color:white">Hospitality</a></div>
+    <div class="fullW centric"><a href="/contactUs" style="font-weight:bold;color:white">Contact Us</a></div>
+    <div class="fullW centric"><a href="/sponsors" style="font-weight:bold;color:white">Sponsors</a></div>
+  </div>
+  <div class="fullW fullH thumbs_wrap hideInMobile">
+    <a href="/eventCategories">
+      <div class="thumbs_wrap navIcon" id="navIconEvent">
+        <img src="/assets/images/gear.png">
+        <p class="fullW valignOut navName" style="padding:0px 30px">Events <br/>& Workshops</p>
+      </div>
+    </a>
+    <a href="/sponsors">
+      <div class="thumbs_wrap navIcon" id="navIconSpons">
+        <img src="/assets/images/gear.png">
+        <p class="fullW valignOut navName">Sponsors</p>
+      </div>
+    </a>
+    <a href="/hospi">
+      <div class="thumbs_wrap navIcon" id="navIconHospi">
+        <img src="/assets/images/gear.png">
+        <p class="fullW valignOut navName">Hospitality</p>
+      </div>
+    </a>
+    <a href="/contactUs">
+      <div class="thumbs_wrap navIcon" id="navIconContact">
+        <img src="/assets/images/gear.png">
+        <p class="fullW valignOut navName">Contact Us</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- fixed icons-->
+  <div style="position:fixed;left:10px;bottom:10px">
+    <img src="assets/images/iitmlogo.png" width="55px"/>
+    <img src="assets/images/mea.png" width="70px" />
+  </div>
+
+  <div style="position:fixed;right:10px;bottom:10px;z-index:10">
+      <a href="https://www.facebook.com/mechanica.iitm" target="_blank" class="cursorp"><img src="assets/images/fb_icon.png" height='30px'/></a>
+      <a href="https://twitter.com/Mechanica_IITM" target="_blank" class="cursorp"><img src="assets/images/twitter_icon.png" height='34px'/></a>
+  </div>
+</div>
