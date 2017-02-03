@@ -11,6 +11,7 @@
 'use strict';
 
 import jsonpatch from 'fast-json-patch';
+import validator from 'validator';
 import EventCategory from './eventCategory.model';
 
 function respondWithResult(res, statusCode) {
@@ -72,6 +73,9 @@ export function index(req, res) {
 
 // Gets a single EventCategory from the DB
 export function show(req, res) {
+  if(!validator.isMongoId(req.params.id+''))
+    return res.status(400).send("Invalid Id");
+
   return EventCategory.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
@@ -95,6 +99,26 @@ export function upsert(req, res) {
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
+export function update(req, res) {
+  if(req.body._id) {
+    delete req.body._id;
+  }
+  if(!validator.isMongoId(req.params.id+''))
+    return res.status(400).send("Invalid Id");
+
+  return EventCategory.findById(req.params.id).exec()
+    .then(handleEntityNotFound(res))
+    .then(eventCategory=>{
+    eventCategory.name=req.body.name;
+    eventCategory.info=req.body.info;
+    eventCategory.imgURL=req.body.imgURL;
+    eventCategory.save()
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+    })
+    .catch(handleError(res));
+}
+
 
 // Updates an existing EventCategory in the DB
 export function patch(req, res) {

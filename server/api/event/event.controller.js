@@ -11,6 +11,7 @@
 'use strict';
 
 import jsonpatch from 'fast-json-patch';
+import validator from 'validator';
 import Event from './event.model';
 import EventCategory from '../eventCategory/eventCategory.model';
 
@@ -75,6 +76,10 @@ export function index(req, res) {
 // Gets a single Event from the DB
 export function show(req, res) {
   console.log(req.params.id);
+ 
+  if(!validator.isMongoId(req.params.id+''))
+    return res.status(400).send("Invalid Id");
+
   return Event.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
@@ -83,6 +88,10 @@ export function show(req, res) {
 
 // Gets a single Event from the DB
 export function isRegistered(req, res) {
+  
+  if(!validator.isMongoId(req.params.id+''))
+    return res.status(400).send("Invalid Id");
+
   return Event.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(event => {
@@ -133,6 +142,9 @@ export function update(req, res) {
   if(req.body._id) {
     delete req.body._id;
   }
+  if(!validator.isMongoId(req.params.id+''))
+    return res.status(400).send("Invalid Id");
+
   return Event.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(event=>{
@@ -154,6 +166,9 @@ export function update(req, res) {
 }
 
 export function register (req, res){
+  if(!validator.isMongoId(req.params.id+''))
+    return res.status(400).send("Invalid Id");
+  
   return Event.findById(req.params.id)
   .exec()
   .then( event =>{

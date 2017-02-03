@@ -12,6 +12,7 @@
 
 import jsonpatch from 'fast-json-patch';
 import House from './house.model';
+import validator from 'validator';
 import User from '../user/user.model';
 
 function respondWithResult(res, statusCode) {
@@ -79,6 +80,10 @@ export function index(req, res) {
 
 // Gets a single House from the DB
 export function show(req, res) {
+  if(!validator.isMongoId(req.params.id+''))
+    return res.status(400).send("Invalid Id");
+
+
   return House.findById(req.params.id)
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
@@ -174,6 +179,9 @@ export function upsert(req, res) {
   if(req.body._id) {
     delete req.body._id;
   }
+  if(!validator.isMongoId(req.params.id+''))
+    return res.status(400).send("Invalid Id");
+
   return House.findOneAndUpdate(req.params.id, req.body, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
 
     .then(respondWithResult(res))

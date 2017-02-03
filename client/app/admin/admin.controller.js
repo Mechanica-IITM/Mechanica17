@@ -78,6 +78,7 @@ export default class AdminController {
         }
 
     $scope.event = {};
+    $scope.eventCatForm={};
     $scope.eventSubmit=function(form){
       $scope.event.startTime = new Date($scope.event.date);
       $scope.event.startTime.setHours($scope.event.startTimeHrs);
@@ -128,9 +129,21 @@ export default class AdminController {
       $scope.editThisEvent = true;
     }
     
+    $scope.editEventCategory = function(eventCategory){
+      $scope.eventCatForm = eventCategory;      
+      $scope.editThisEventCategory = true;
+    }
+    
     $scope.setEventNull = function(){
       $scope.event = {};
+      $scope.editThisEvent = false;
     }
+
+    $scope.setEventCategoryNull = function(){
+      $scope.eventCatForm = {};
+      $scope.editThisEventCategory = false;
+    }
+
     $scope.meaEventSubmit=function(form){
       $scope.submitted=true;
       if(form.$valid)
@@ -153,23 +166,32 @@ export default class AdminController {
     };
 
     $scope.eventCategorySubmit=function(form){
-      $scope.submitted1=true;
+
+      $scope.categorySubmitted=true;
+      
       if(form.$valid)
       {
-        $http.post('/api/eventCategorys',
-          { 
-            name:$scope.CategoryName,
-            info:$scope.CategoryInfo,
-            imgURL:$scope.CategoryImage
-          }
-        ).then(function(response){
-          location.reload();
+        var method = 'POST';
+        var categoryId = ''; 
+        // empty for creating new event category
+        if($scope.eventCatForm._id){
+          method = 'PUT';
+          categoryId = $scope.eventCatForm._id;
+        }
 
-        }).then(function(err){
+        $http({
+          method : method,
+          url : '/api/eventCategorys/'+categoryId,
+          data : $scope.eventCatForm
+        }).then(function(response){
+          location.reload();
+        }).catch(function(err){
           console.log(err);
         })
       
       }
+      else
+        alert('Please Check the form');
     };
 
     $scope.setScoreZero = function(){
@@ -181,7 +203,7 @@ export default class AdminController {
     }
 
     
-  }
+  };
 
   delete(user) {
     user.$remove();

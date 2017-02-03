@@ -17,13 +17,13 @@
   <br><br> -->
   <md-content>
     <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
-      <md-tab label="create event category">
+      <md-tab label="create/edit event category" md-active="editThisEventCategory" md-on-deselect="setEventCategoryNull()">
         <md-content class="md-padding">
           <form name="eventCategoryForm" novalidate ng-submit="eventCategorySubmit(eventCategoryForm)">
             <md-input-container class="md-block" flex-gt-sm="">
               <!-- <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon> -->
               <label>Event Category Name</label>
-              <input type="text" name="CategoryName" ng-model="CategoryName" required>        
+              <input type="text" name="CategoryName" ng-model="eventCatForm.name" required>        
               <div ng-messages="eventCategoryForm.CategoryName.$error">
                 <div ng-message="required">Please Enter Event Category Name</div>
               </div>
@@ -38,7 +38,7 @@
 
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Event Category Picture Url</label>
-              <input type="text" name="poster" ng-model="CategoryImage">
+              <input type="text" name="categpryPoster" ng-model="eventCatForm.imgURL">
               <small>You can upload picture in google drive and share the link here. Please compress the image before uploading.</small>   
             </md-input-container>
 
@@ -46,7 +46,7 @@
           </form>
         </md-content>
       </md-tab>
-      <md-tab label="Add/Edit mechanica event" md-active="editThisEvent" md-on-deselect="setEventNull">
+      <md-tab label="Add/Edit mechanica event" md-active="editThisEvent" md-on-deselect="setEventNull()">
         <md-content class="md-padding">
           <form name="eventForm" novalidate ng-submit="eventSubmit(eventForm)">
             <small>What ever isn't decided yet, can be written as - Will be updated soon</small>
@@ -251,9 +251,10 @@
   <div class="fullW colorbl paddingLR">
     <h3>All Events</h3>
     <div ng-repeat="eventCategory in eventCategories">
-      <h5>{{eventCategory.name}}</h5>
+      <span>{{eventCategory.name}}</span> - <a href="#" ng-click="editEventCategory(eventCategory)">Edit</a>
       <p ng-repeat="event in eventCategory.events" class="colorlg">
-        <a href="/event/{{event._id}}">{{event.event.name}}</a> - <a href="#" ng-click="editEvent(event.event)">Edit</a>
+        <a href="/event/{{event.event._id}}">{{event.event.name}}</a> - <a href="#" ng-click="editEvent(event.event)">Edit</a>
+
       </p>
     </div>
   </div>
