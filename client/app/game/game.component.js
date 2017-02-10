@@ -7,7 +7,7 @@ import routes from './game.routes';
 
 export class GameComponent {
 
-  static $inject = ['$http', '$scope'];  
+  static $inject = ['$http','$scope'];  
   constructor($http, $scope) {
 
     $http.get('/api/users/getHighScore')
@@ -166,6 +166,16 @@ export class GameComponent {
       renderer.setSize(WIDTH, HEIGHT);
       camera.aspect = WIDTH / HEIGHT;
       camera.updateProjectionMatrix();
+    }
+
+    function handleBlur(){
+       
+      if (game.status=="playing") {
+      alert('You are now leaving.Game will be reset');
+      game.status="waitingReplay";
+      showReplay();
+      }
+      // resetGame();
     }
 
     function handleMouseMove(event) {
@@ -1023,7 +1033,8 @@ export class GameComponent {
       document.addEventListener('touchmove', handleTouchMove, false);
       document.addEventListener('mouseup', handleMouseUp, false);
       document.addEventListener('touchend', handleTouchEnd, false);
-
+      window.addEventListener('blur', handleBlur, false);
+      
       loop();
     }
 
