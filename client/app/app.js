@@ -70,6 +70,21 @@ angular.module('mechanicaApp', [ngCookies, ngResource, ngSanitize, 'btford.socke
       }
     }
   })
+
+  .directive('pwCheck', [function () {
+    return {
+      require: 'ngModel',
+      link: function (scope, elem, attrs, ctrl) {
+        var firstPassword = '#' + attrs.pwCheck;
+        elem.add(firstPassword).on('keyup', function () {
+          scope.$apply(function () {
+            var v = elem.val()===$(firstPassword).val();
+            ctrl.$setValidity('pwmatch', v);
+          });
+        });
+      }
+    }
+  }])
   .run(function($rootScope, $location, Auth) {
     'ngInject';
     // Redirect to login if route requires auth and you're not logged in
@@ -88,4 +103,4 @@ angular.element(document)
     angular.bootstrap(document, ['mechanicaApp'], {
       strictDi: true
     });
-  });
+  });;

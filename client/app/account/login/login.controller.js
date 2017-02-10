@@ -9,6 +9,7 @@ export default class LoginController {
   }
 
   login(form) {
+    this.errors = {};
     this.submitted = true;
 
     if(form.$valid) {

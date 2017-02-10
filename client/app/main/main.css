@@ -113,6 +113,7 @@ video {
 
 .navIcon{
   position: absolute !important;
+  z-index: 1000;
   /*width: 100px;
   height: 100px;
   border: 2px dotted #d1b790;

@@ -15,17 +15,12 @@ export class EventCategoryComponent {
     $http.get('/api/eventCategorys/')
       .then(response => {
         $scope.eventCategories = response.data;
-        for (var i = $scope.eventCategories.length - 1; i >= 0; i--) {
-          $scope.eventCategories[i].info = $scope.eventCategories[i].info.split('\n');
-        }
 
         // Replaces images if they dont exist in recurrence
         this.recur($scope.eventCategories, 0);
 
 
       });
-
-    $scope.imagePath="/assets/images/gear.png";
 
       $scope.goToEvent=function(id) {
         $location.path('event/' +id);
@@ -47,7 +42,7 @@ export class EventCategoryComponent {
 
   recur(eventCategories, j){
     this.checkImageAndReplace(eventCategories[j].imgURL, '/assets/images/eventBgDefault.jpg', src=>{
-      this.$scope.eventCategories[j].poster = src;
+      eventCategories[j].poster = src;
       j++;
       if(j<eventCategories.length)
         this.recur(eventCategories, j)

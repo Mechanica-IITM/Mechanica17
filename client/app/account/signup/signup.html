@@ -42,7 +42,7 @@
             <input type="password" name="password" class="form-control" ng-model="vm.user.password"
                    ng-minlength="3"
                    required
-                   mongoose-error/>
+                   mongoose-error id="pwd1"/>
             <p class="help-block"
                ng-show="(form.password.$error.minlength || form.password.$error.required) && vm.submitted">
               Password must be at least 3 characters.
@@ -55,13 +55,12 @@
           <div class="form-group" ng-class="{ 'has-success': form.confirmPassword.$valid && vm.submitted,
                                               'has-error': form.confirmPassword.$invalid && vm.submitted }">
             <label>Confirm Password</label>
-            <input type="password" name="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword"
-                   match="vm.user.password"
-                   ng-minlength="3" required/>
-            <p class="help-block"
-               ng-show="form.confirmPassword.$error.match && vm.submitted">
-              Passwords must match.
-            </p>
+            <input type="password" name="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword" ng-minlength="3" required pw-check='pwd1' id="pwd2"/>
+            <div class='msg-block' ng-show='myForm.$error'>
+              <span class='msg-error' ng-show='form.pwd2.$error.pwmatch'>
+                Passwords don't match.
+              </span>
+            </div>
           </div>
           <div class="form-group" ng-class="{ 'has-success': form.college.$valid && vm.submitted,
                                               'has-error': form.college.$invalid && vm.submitted }">
@@ -83,6 +82,14 @@
               A Roll Number is required
             </p>
           </div>
+          <div class="fullW thumbs_wrap">
+            <label>Need accomodation?</label>
+            <md-radio-group ng-model="vm.user.reqAccom" name="reqAccom">
+              <md-radio-button ng-value="true"> Yes</md-radio-button>
+              <md-radio-button ng-value="false"> No</md-radio-button>
+            </md-radio-group>
+          </div>
+
           <div>
             <button class="btn btn-inverse btn-lg btn-register" type="submit">
               Sign up

@@ -7,8 +7,8 @@ import routes from './game.routes';
 
 export class GameComponent {
 
-  static $inject = ['$http','$scope'];  
-  constructor($http, $scope) {
+  static $inject = ['$http','$scope','$location'];  
+  constructor($http, $scope, $location) {
 
     $http.get('/api/users/getHighScore')
     .then(res =>{
@@ -97,6 +97,7 @@ export class GameComponent {
               distanceForEnnemiesSpawn:50,
 
               status : "playing",
+              isPaused: false
              };
       fieldLevel.innerHTML = Math.floor(game.level);
     }
@@ -169,13 +170,15 @@ export class GameComponent {
     }
 
     function handleBlur(){
-       
-      if (game.status=="playing") {
-      alert('You are now leaving.Game will be reset');
-      game.status="waitingReplay";
-      showReplay();
+      if($location.path().search('game')+1){
+        game.isPaused = true
       }
-      // resetGame();
+    }
+    function handleFocus(){
+      if($location.path().search('game')+1){
+        game.isPaused = false;
+        oldTime = new Date();
+      }
     }
 
     function handleMouseMove(event) {
@@ -847,58 +850,59 @@ export class GameComponent {
       deltaTime = newTime-oldTime;
       oldTime = newTime;
 
-      if (game.status=="playing"){
+      if(($location.path().search('game')+1) && !game.isPaused){ // Compute only in game window
+        if (game.status=="playing"){
+          // Add energy coins every 100m;
+          if (Math.floor(game.distance)%game.distanceForCoinsSpawn == 0 && Math.floor(game.distance) > game.coinLastSpawn){
+            game.coinLastSpawn = Math.floor(game.distance);
+            coinsHolder.spawnCoins();
+          }
 
-        // Add energy coins every 100m;
-        if (Math.floor(game.distance)%game.distanceForCoinsSpawn == 0 && Math.floor(game.distance) > game.coinLastSpawn){
-          game.coinLastSpawn = Math.floor(game.distance);
-          coinsHolder.spawnCoins();
+          if (Math.floor(game.distance)%game.distanceForSpeedUpdate == 0 && Math.floor(game.distance) > game.speedLastUpdate){
+            game.speedLastUpdate = Math.floor(game.distance);
+            game.targetBaseSpeed += game.incrementSpeedByTime*deltaTime;
+          }
+
+
+          if (Math.floor(game.distance)%game.distanceForEnnemiesSpawn == 0 && Math.floor(game.distance) > game.ennemyLastSpawn){
+            game.ennemyLastSpawn = Math.floor(game.distance);
+            ennemiesHolder.spawnEnnemies();
+          }
+
+          if (Math.floor(game.distance)%game.distanceForLevelUpdate == 0 && Math.floor(game.distance) > game.levelLastUpdate){
+            game.levelLastUpdate = Math.floor(game.distance);
+            game.level++;
+            fieldLevel.innerHTML = Math.floor(game.level);
+
+            game.targetBaseSpeed = game.initSpeed + game.incrementSpeedByLevel*game.level
+          }
+
+
+          updatePlane();
+          updateDistance();
+          updateEnergy();
+          game.baseSpeed += (game.targetBaseSpeed - game.baseSpeed) * deltaTime * 0.02;
+          game.speed = game.baseSpeed * game.planeSpeed;
+
+        }else if(game.status=="gameover"){
+          game.speed *= .99;
+          airplane.mesh.rotation.z += (-Math.PI/2 - airplane.mesh.rotation.z)*.0002*deltaTime;
+          airplane.mesh.rotation.x += 0.0003*deltaTime;
+          game.planeFallSpeed *= 1.05;
+          airplane.mesh.position.y -= game.planeFallSpeed*deltaTime;
+
+          if (airplane.mesh.position.y <-200){
+            
+            $http.post('/api/users/setHighScore',{score: game.distance})
+            .then(res =>{
+            })
+            showReplay();
+            game.status = "waitingReplay";
+
+          }
+        }else if (game.status=="waitingReplay"){
+
         }
-
-        if (Math.floor(game.distance)%game.distanceForSpeedUpdate == 0 && Math.floor(game.distance) > game.speedLastUpdate){
-          game.speedLastUpdate = Math.floor(game.distance);
-          game.targetBaseSpeed += game.incrementSpeedByTime*deltaTime;
-        }
-
-
-        if (Math.floor(game.distance)%game.distanceForEnnemiesSpawn == 0 && Math.floor(game.distance) > game.ennemyLastSpawn){
-          game.ennemyLastSpawn = Math.floor(game.distance);
-          ennemiesHolder.spawnEnnemies();
-        }
-
-        if (Math.floor(game.distance)%game.distanceForLevelUpdate == 0 && Math.floor(game.distance) > game.levelLastUpdate){
-          game.levelLastUpdate = Math.floor(game.distance);
-          game.level++;
-          fieldLevel.innerHTML = Math.floor(game.level);
-
-          game.targetBaseSpeed = game.initSpeed + game.incrementSpeedByLevel*game.level
-        }
-
-
-        updatePlane();
-        updateDistance();
-        updateEnergy();
-        game.baseSpeed += (game.targetBaseSpeed - game.baseSpeed) * deltaTime * 0.02;
-        game.speed = game.baseSpeed * game.planeSpeed;
-
-      }else if(game.status=="gameover"){
-        game.speed *= .99;
-        airplane.mesh.rotation.z += (-Math.PI/2 - airplane.mesh.rotation.z)*.0002*deltaTime;
-        airplane.mesh.rotation.x += 0.0003*deltaTime;
-        game.planeFallSpeed *= 1.05;
-        airplane.mesh.position.y -= game.planeFallSpeed*deltaTime;
-
-        if (airplane.mesh.position.y <-200){
-          $http.post('/api/users/setHighScore',{score: game.distance})
-          .then(res =>{
-            console.log(res);
-          })
-          showReplay();
-          game.status = "waitingReplay";
-
-        }
-      }else if (game.status=="waitingReplay"){
-
       }
 
 
@@ -1034,6 +1038,7 @@ export class GameComponent {
       document.addEventListener('mouseup', handleMouseUp, false);
       document.addEventListener('touchend', handleTouchEnd, false);
       window.addEventListener('blur', handleBlur, false);
+      window.addEventListener('focus', handleFocus, false);
       
       loop();
     }

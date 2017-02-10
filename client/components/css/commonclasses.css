@@ -481,7 +481,7 @@ label{
 #hidden {
     height:50px;
     position: relative;
-    background: white;           
+    background: none;           
     /*background-color:#0a4b60;*/
 }
 .md-select-value{
@@ -495,8 +495,9 @@ label{
     float: right;
 }
 
-
-
+.btn{
+  border-radius: 0px;
+}
 @media only screen and (min-width: 992px) {
   .paddingLR{
     padding-left: 50px !important;

@@ -37,6 +37,7 @@ var UserSchema = new Schema({
   highscore: {type:Number, default:0},
   rollNumber: {type:String,uppercase:true},
   phoneNumber: {type:String},
+  reqAccom: Boolean,
   // meaEvents: [{meaEvent:{type:Schema.Types.ObjectId,ref:'MeaEvent'},score:Number}],
   house:{type:Schema.Types.ObjectId,ref:'House'},
   provider: String,

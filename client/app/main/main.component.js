@@ -537,11 +537,10 @@ export class MainController {
   }
 
 
-  registerEvent(event)
-  {
-    this.$http.put('/api/events/register/'+event._id);
-    console.log("Successfully registered");
-  }
+  // registerEvent(event)
+  // {
+  //   this.$http.put('/api/events/register/'+event._id);
+  // }
 
 }
 
