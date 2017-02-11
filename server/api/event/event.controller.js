@@ -158,6 +158,8 @@ export function update(req, res) {
     event.endTime=new Date(req.body.endTime);
     event.venue=req.body.venue;
     event.poster=req.body.poster;
+    event.contact=req.body.contact;
+    event.problemStatement=req.body.problemStatement;
     event.save()
     .then(respondWithResult(res))
     .catch(handleError(res));
