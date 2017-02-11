@@ -9,11 +9,11 @@
 				        <md-content class="md-padding">
 				          <h3>Info</h3>
 				          <p ng-repeat="info in event.info">{{info}}</p>
-				          <div class="fullW thumbs_wrap" ng-show="event.awards.length">
+				          <div class="fullW thumbs_wrap" ng-if="event.awards.length">
 					          <h3>Awards</h3>
 					          <p ng-repeat="award in event.awards">{{award}}</p>
 					      </div>
-					      <div class="fullW thumbs_wrap" ng-show="event.awards.venue">
+					      <div class="fullW thumbs_wrap" ng-if="event.awards.venue">
 							  <h3>Venue</h3>
 					          <p>{{event.venue}}</p>
 					      </div>
@@ -25,26 +25,31 @@
 				          <p ng-repeat="faq in event.faq">{{faq}}</p>
 				        </md-content>
 				      </md-tab>
-				      <md-tab label="rules/terms" ng-show="event.rules.length">
+				      <md-tab label="rules/terms" ng-if="event.rules.length">
 				        <md-content class="md-padding">
 				          <p ng-repeat="rule in event.rules">{{rule}}</p>
 				        </md-content>
 				      </md-tab>
-				       <md-tab label="contact">
+				       <md-tab label="contacts">
 				        <md-content class="md-padding">
 				          <p ng-repeat="contact in event.contact">{{contact}}</p>
 				        </md-content>
 				      </md-tab>
-				       <md-tab label="problem statement" ng-show="event.rules.length">
+				       <md-tab label="problem statement" ng-if="event.problemStatement.length">
 				        <md-content class="md-padding">
-				         <a href="{{event.problemStatement}}">Click here</a> to open the problem statement
+				         <a href="{{event.problemStatement}}" target="_blank">Click here</a> to open the problem statement.
 				        </md-content>
 				      </md-tab>
 				       <md-tab label="registration">
 				        <md-content class="md-padding">
 				        	<label>Click on the button to register for the event</label>
 				        	<md-button class="md-warn md-raised" ng-click="register()" ng-disabled="isRegistered">Register<span ng-show="isRegistered">ed</span></md-button>
-				        	<p>If this is a team event, it is enough if one member of the team registers here</p>
+				        	<div ng-if="event.paylink.length">
+				        		This is a paid event. <a href="{{event.paylink}}" target="_blank">Click here and pay</a>.
+				        		<br/>
+				        		Please note: You have to register and as well as pay. For any further details, contact us.
+				        	</div>
+				        	<p>If this is a team event, it is enough if one member of the team registers here.</p>
 				        </md-content>
 				      </md-tab>
 				    </md-tabs>

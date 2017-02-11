@@ -74,43 +74,50 @@
              
             <md-input-container class="col-sm-6">
               <textarea ng-model="event.info" name="info" md-select-on-focus="" required></textarea>
-              <label for="info">Info</label>
+              <label for="info">Info*</label>
               <div ng-messages="eventForm.info.$error">
                 <div ng-message="required">Please Enter Event Info</div>
               </div>
             </md-input-container>
+
             <md-input-container class="col-sm-6">
-              <textarea ng-model="event.awards" name="awards"  md-select-on-focus="" required></textarea>
+              <textarea ng-model="event.awards" name="awards" ></textarea>
               <label for="awards">Awards</label>
               <div ng-messages="eventForm.awards.$error">
                 <div ng-message="required">Please Enter awards for event</div>
               </div>
             </md-input-container>
+
             <md-input-container class="col-sm-6">
-              <textarea ng-model="event.faq" name="faq" md-select-on-focus="" required></textarea>
-              <label for="faq">FAQ</label>
+              <textarea ng-model="event.faq" name="faq" required></textarea>
+              <label for="faq">FAQ*</label>
               <div ng-messages="eventForm.faq.$error">
                 <div ng-message="required">Please Enter Event FAQ</div>
               </div>
             </md-input-container>
+
             <md-input-container class="col-md-6">
-              <textarea ng-model="event.rules" name="rules" md-select-on-focus="" required></textarea>
-              <label for="rules">Rules/Terms</label>
+              <textarea ng-model="event.rules" name="rules" required></textarea>
+              <label for="rules">Rules/Terms*</label>
               <div ng-messages="eventForm.rules.$error">
                 <div ng-message="required">Please Enter Event Rules</div>
               </div>
             </md-input-container>
 
             <md-input-container class="col-md-6" flex-gt-sm="">
-              <label>Contact Details</label>
-              <textarea ng-model="event.contact"></textarea> 
+              <label>Contact Details*</label>
+              <textarea ng-model="event.contact" required></textarea> 
                 <small>Enter contact details.</small> 
             </md-input-container>
 
             <md-input-container class="col-md-12" flex-gt-sm="">
-              <label>Problem Statement Url (Google Drive link)</label>
-              <textarea ng-model="event.problemStatement"></textarea> 
-                <small>Enter problem statement.</small> 
+              <label>Problem Statement Url (Google Drive link) (leave empty if not needed)</label>
+              <textarea ng-model="event.problemStatement"></textarea>
+            </md-input-container>
+
+             <md-input-container class="col-md-12" flex-gt-sm="">
+              <label>Payment link (leave empty if not needed)</label>
+              <textarea ng-model="event.paylink"></textarea> 
             </md-input-container>
 
             <md-input-container>

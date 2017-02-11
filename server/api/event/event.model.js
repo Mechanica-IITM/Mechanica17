@@ -14,6 +14,7 @@ var EventSchema = new mongoose.Schema({
   venue: {type:String, default:''},
   poster: {type:String, default:''},
   problemStatement:{type:String, default:''},
+  paylink:{type:String, default:''},
   contact:{type:String, default:''},
   active: Boolean,
   eventCategory: {type: mongoose.Schema.Types.ObjectId, ref:'EventCategory'},

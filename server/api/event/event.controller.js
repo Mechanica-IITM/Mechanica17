@@ -160,6 +160,7 @@ export function update(req, res) {
     event.poster=req.body.poster;
     event.contact=req.body.contact;
     event.problemStatement=req.body.problemStatement;
+    event.paylink=req.body.paylink;
     event.save()
     .then(respondWithResult(res))
     .catch(handleError(res));
