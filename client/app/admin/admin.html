@@ -113,7 +113,7 @@
                 <small>Enter problem statement.</small> 
             </md-input-container>
 
-            <md-input-container>
+            <md-input-container ng-hide="editThisEvent">
               <md-select placeholder="Assign Category" ng-model="event.eventCategory" required>
                 <md-option ng-value="eventCategory._id" ng-repeat="eventCategory in eventCategories">{{eventCategory.name}}</md-option>
               </md-select>
