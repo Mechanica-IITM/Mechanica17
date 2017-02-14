@@ -13,9 +13,10 @@
 					          <h3>Awards</h3>
 					          <p ng-repeat="award in event.awards">{{award}}</p>
 					      </div>
-					      <div class="fullW thumbs_wrap" ng-if="event.awards.venue">
+					      <div class="fullW thumbs_wrap" ng-if="event.venue.length">
 							  <h3>Venue</h3>
 					          <p>{{event.venue}}</p>
+					          <p>Time: {{event.startTime | date:'medium'}} - {{event.endTime | date:'medium'}}</p>
 					      </div>
 
 				        </md-content>
