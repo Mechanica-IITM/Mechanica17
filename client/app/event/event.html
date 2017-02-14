@@ -45,7 +45,9 @@
 				        	<label>Click on the button to register for the event</label>
 				        	<md-button class="md-warn md-raised" ng-click="register()" ng-disabled="isRegistered">Register<span ng-show="isRegistered">ed</span></md-button>
 				        	<div ng-if="event.paylink.length">
-				        		This is a paid event. <a href="{{event.paylink}}" target="_blank">Click here and pay</a>.
+				        		This is a paid event. <a href="{{event.paylink}}" target="_blank">Click here and pay</a>
+				        		<br/>
+				        		<b ng-show="event.paylink.length"><a href="https://drive.google.com/file/d/0B_YugIP4ZNyhenJRbHdzYVl0M00/view?usp=sharing" target="_blank">Click here for Payment details</a></b>
 				        		<br/>
 				        		Please note: You have to register and as well as pay. For any further details, contact us.
 				        	</div>

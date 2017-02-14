@@ -39,7 +39,7 @@
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Event Category Picture Url</label>
               <input type="text" name="categpryPoster" ng-model="eventCatForm.imgURL">
-              <small>You can upload picture in google drive and share the link here. Please compress the image before uploading.</small>   
+              <small>gdurl.com link - For details contact Webops team</small>   
             </md-input-container>
 
             <button type="submit" class="btn btn-primary">Add Event Category</button>
@@ -58,15 +58,13 @@
               </div>
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm="">
-              <label>Event Picture Url</label>
+              <label>Event Picture Url (gdurl.com link)</label>
               <input type="text" name="poster" ng-model="event.poster">
-              <small>You can upload picture in google drive and share the link here. Please compress the image before uploading.</small>   
             </md-input-container>
 
             <md-input-container class="col-sm-6" flex-gt-sm="">
               <label>Venue</label>
-              <input type="text" name="venue" ng-model="event.venue" required> 
-              <small>If not decided, please type - Will be updated soon</small>       
+              <input type="text" name="venue" ng-model="event.venue" required>       
               <div ng-messages="eventForm.venue.$error">
               <div ng-message="required">Please Enter Venue</div>
               </div>
@@ -111,7 +109,7 @@
             </md-input-container>
 
             <md-input-container class="col-md-12" flex-gt-sm="">
-              <label>Problem Statement Url (Google Drive link) (leave empty if not needed)</label>
+              <label>Problem Statement Url (GDUrL.com link) (leave empty if not needed)</label>
               <textarea ng-model="event.problemStatement"></textarea>
             </md-input-container>
 
@@ -128,15 +126,16 @@
                 <div ng-message="required">Please choose category</div>
               </div>
             </md-input-container>
-            <md-input-container class="md-block">
+            <md-input-container class="col-md-12">
               <label>Date</label>
               <md-datepicker name="date" required ng-model="event.date"></md-datepicker>
               <div ng-messages="eventForm.date.$error">
                 <div ng-message="required">Please Enter Date</div>
               </div>
             </md-input-container>
-            <div layout-gt-sm="row">
-              <md-input-container class="md-block" flex-gt-sm="12">
+            <br/>
+            <div class="fullW">
+              <md-input-container class="col-md-6">
                 <label>Start time (hrs)</label>
                 <input type="number" name="startTimeHrs" ng-model="event.startTimeHrs" required min="0" max="23"/>
                 <div ng-messages="eventForm.startTimeHrs.$error">
@@ -145,7 +144,7 @@
                   <div ng-message="max">Enter between 0 and 23</div>
                 </div>
               </md-input-container>
-              <md-input-container class="md-block mins" flex-gt-sm="12">
+              <md-input-container class="col-md-6">
                 <input type="number" name="startTimeMins" ng-model="event.startTimeMins" required min="0" max="59">
                 <label>Start time (mins)</label>
                 <div ng-messages="eventForm.startTimeMins.$error">
@@ -155,8 +154,8 @@
                 </div>
               </md-input-container>
             </div>
-            <div layout-gt-sm="row">
-              <md-input-container class="md-block" flex-gt-sm="12">
+            <div class="fullW">
+              <md-input-container class="col-md-6">
                 <label>End time (hrs)</label>
                 <input type="number" name="endTimeHrs" ng-model="event.endTimeHrs" required min="0" max="23">
                 <div ng-messages="eventForm.endTimeHrs.$error">
@@ -165,7 +164,7 @@
                   <div ng-message="max">Enter between 0 and 23</div>
                 </div>
               </md-input-container>
-              <md-input-container class="md-block mins" flex-gt-sm="12">
+              <md-input-container class="col-md-6">
                 <input type="number" name="endTimeMins" min="0" max="59" ng-model="event.endTimeMins" required>
                 <label>End time (mins)</label>
                 <div ng-messages="eventForm.endTimeMins.$error">
