@@ -73,10 +73,7 @@ export function index(req, res) {
 
 // Gets a single EventCategory from the DB
 export function show(req, res) {
-  if(!validator.isMongoId(req.params.id+''))
-    return res.status(400).send("Invalid Id");
-
-  return EventCategory.findById(req.params.id).exec()
+  return EventCategory.findOne({"name":req.params.name}).populate('events.event').exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));

@@ -20,12 +20,13 @@ export class EventComponent {
       .then(response => {
         $scope.event = response.data;
 
-        $scope.event.info=strip($scope.event.info);
-        $scope.event.faq=strip($scope.event.faq);
-        $scope.event.rules=strip($scope.event.rules);
-        $scope.event.awards=strip($scope.event.awards);
-        $scope.event.contact=strip($scope.event.contact);
-
+        $scope.event.info = strip($scope.event.info);
+        $scope.event.faq = strip($scope.event.faq);
+        $scope.event.rules = strip($scope.event.rules);
+        if($scope.event.awards.length)
+          $scope.event.awards = strip($scope.event.awards);
+        $scope.event.contact = strip($scope.event.contact);
+ 
         this.checkImageAndReplace($scope.event.poster, '/assets/images/eventBgDefault.jpg', src=>{
           $scope.poster = src;
         })

@@ -33,6 +33,11 @@ export class MainController {
     .then(res =>{
       $scope.highscores = res.data;
     })
+
+    $http.get('/api/eventCategorys/Workshops')
+    .then(res=>{
+      $scope.eventCategory = res.data;
+    })
     // All code related to game in dashboard
     //COLORS
     var Colors = {

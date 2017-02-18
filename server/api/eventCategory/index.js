@@ -7,7 +7,7 @@ import * as auth from '../../auth/auth.service';
 var router = express.Router();
 
 router.get('/', controller.index);
-// router.get('/:id', controller.show);
+router.get('/:name', controller.show); // Knowingly changed from id to name
 router.post('/', auth.hasRole('admin'), controller.create);
 // router.put('/:id', auth.hasRole('admin'), controller.upsert);
 // router.patch('/:id', controller.patch);

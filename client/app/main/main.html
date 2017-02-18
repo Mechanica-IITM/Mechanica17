@@ -57,14 +57,25 @@
     </a>
   </div>
 
+  <div class="partisan" style="padding:20px 7.5em 1em 8.5em;">
+      <svg class="partisan__bg" viewBox="0 0 500 188" preserveAspectRatio="none" width="100%" height="100%" aria-hidden="true">
+        <polygon points="0 154 123.39 0 235.78 14.79 365.6 28.9 436.24 114.93 500 188 0 188 0 154" fill="#fff"/>
+        <polygon points="0 188 108.84 18.17 347.91 26.79 500 188 365.6 28.9 123.39 0 0 154 0 188" fill="#8a775b"/>
+      </svg>
+      <div style="opacity:1;color:grey" class="thumbs_wrap">
+        <h5 class="fullW colorbl"><b>Register for Workshops now</b></h5>
+        <p ng-repeat="event in eventCategory.events"><a target="_blank" href="/event/{{event.event._id}}"><b>{{event.event.name}}</b></a></p>
+      </div>
+  </div>
+
   <!-- fixed icons-->
   <div style="position:fixed;left:10px;bottom:10px">
-    <img src="assets/images/iitmlogo.png" width="55px"/>
-    <img src="assets/images/mea.png" width="70px" />
   </div>
 
   <div style="position:fixed;right:10px;bottom:10px;z-index:10">
-      <a href="https://www.facebook.com/mechanica.iitm" target="_blank" class="cursorp"><img src="assets/images/fb_icon.png" height='30px'/></a>
-      <a href="https://twitter.com/Mechanica_IITM" target="_blank" class="cursorp"><img src="assets/images/twitter_icon.png" height='34px'/></a>
+      <a href="https://www.facebook.com/mechanica.iitm" target="_blank" class="cursorp"><img src="assets/images/fb_icon.png" height='40px'/></a>
+      <!-- <a href="https://twitter.com/Mechanica_IITM" target="_blank" class="cursorp"><img src="assets/images/twitter_icon.png" height='34px'/></a> -->
+    <img src="assets/images/mea.png" width="50px" />
+    <img src="assets/images/iitmlogo.png" width="40px"/>
   </div>
 </div>
