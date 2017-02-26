@@ -114,6 +114,35 @@ export default class AdminController {
         alert('Please Check the form');
     };
 
+    $scope.genExcel=function(id){
+      $scope.getRegisteredUsers=[];
+
+      $http.get('/api/events/'+id)
+      .then(response => {
+      
+        $scope.getRegisteredIds = response.data.registered;
+
+        for (var i = 0; i <= $scope.getRegisteredIds.length; i++) {
+          $http.get('/api/users/'+$scope.getRegisteredIds[i].user)
+          .then(response=>{
+                
+                $scope.getRegisteredUsers.push(response.data)
+            })
+          }
+        console.log($scope.getRegisteredUsers)
+      });
+
+
+      $http.post('/api/events/genExcel/'+id,$scope.getRegisteredUsers
+        ).then(function(response){
+          console.log("Generated");
+          alert("Excel Generated");
+
+        }).catch(function(err){
+          console.log(err);
+        })
+    }
+
     $scope.editEvent = function(event){
       $scope.event = event;
       $scope.event.date=new Date($scope.event.date);

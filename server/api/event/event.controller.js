@@ -12,6 +12,7 @@
 
 import jsonpatch from 'fast-json-patch';
 import validator from 'validator';
+import mongoXlsx from 'mongo-xlsx';
 import Event from './event.model';
 import EventCategory from '../eventCategory/eventCategory.model';
 
@@ -126,6 +127,26 @@ export function create(req, res) {
     .catch(handleError(res));
 }
 
+// Exports list of registered users of an event
+export function convertToExcel(req, res) {
+  if(!validator.isMongoId(req.params.id+''))
+    return res.status(400).send("Invalid Id");
+
+  return Event.findById(req.params.id).exec()
+    .then(event=>{
+      console.log(req.body)
+      var data=req.body;
+      var model = mongoXlsx.buildDynamicModel(data);
+      console.log(data);
+ // Generate Excel 
+      mongoXlsx.mongoData2Xlsx(data, model, function(err, data) {
+      console.log('File saved at:', data.fullPath);
+      return res.status(201).send(data.fullPath)
+          })
+
+    })
+    .catch(handleError(res));
+}
 // Upserts the given Event in the DB at the specified ID
 export function upsert(req, res) {
   if(req.body._id) {
