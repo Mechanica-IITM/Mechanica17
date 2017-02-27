@@ -115,32 +115,27 @@ export default class AdminController {
     };
 
     $scope.genExcel=function(id){
-      $scope.getRegisteredUsers=[];
-
-      $http.get('/api/events/'+id)
+      $http.get('/api/events/getRegisteredUsers/'+id)
       .then(response => {
-      
-        $scope.getRegisteredIds = response.data.registered;
+        console.log("participants");
+        $scope.getRegisteredUsers=response.data;
 
-        for (var i = 0; i <= $scope.getRegisteredIds.length; i++) {
-          $http.get('/api/users/'+$scope.getRegisteredIds[i].user)
-          .then(response=>{
-                
-                $scope.getRegisteredUsers.push(response.data)
-            })
-          }
-        console.log($scope.getRegisteredUsers)
-      });
-
-
-      $http.post('/api/events/genExcel/'+id,$scope.getRegisteredUsers
+        $http.post('/api/events/genExcel/'+id,$scope.getRegisteredUsers
         ).then(function(response){
           console.log("Generated");
-          alert("Excel Generated");
+          console.log(response.data)
+          alert("Excel Generated at "+response.data.fullPath);
 
         }).catch(function(err){
           console.log(err);
         })
+      })
+      .catch(function(err){
+        console.log(err);
+      });
+    
+
+      
     }
 
     $scope.editEvent = function(event){
