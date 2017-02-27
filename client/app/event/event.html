@@ -51,16 +51,21 @@
 				      </md-tab>
 				      <md-tab label="Payment" ng-if="event.paylink.length">
 				        <md-content class="md-padding">
-				        	<label>This is a paid Workshop</label>
+				        	<label>This is a paid Workshop <b><a href="https://drive.google.com/file/d/0B_YugIP4ZNyhenJRbHdzYVl0M00/view?usp=sharing" target="_blank"><u>(Click here for Payment details)</u></a></b></label><br/>
+				        	<a href="{{event.paylink}}" target="_blank">
+				        		<md-button class="md-warn bgcr" ng-click="register()" style="margin-left:0px">
+				        		Click here to Pay Online
+				        		</md-button>
+				        	</a>
 				        	<div>
-				        		<b><u>Pay through DD or NEFT</u></br>
+				        		<b>-----or-----<br/>
+				        		<u>Pay through DD or NEFT</u></br>
 				        		Account Name: BHANU MITRA BULUSU<br/>
 				        		Account number: 20176727333<br/>                        
 								SBI, IIT Madras Branch<br/>
 								IFSC: SBIN0001055<br/>
 								Mobile Number: 9087863231</b>
 				        	</div>
-				        	<!-- <md-button class="md-warn md-raised" ng-click="register()" ng-disabled="isRegistered">Register<span ng-show="isRegistered">ed</span></md-button> -->
 				        </md-content>
 				      </md-tab>
 				    </md-tabs>
