@@ -274,7 +274,7 @@ body #cdawrap { top: auto; right: auto; bottom: 12px; left: 12px; border: 1px so
 }
 @media screen and (max-width:60em) {
   .game-holder .message--instructions { bottom: 5.5em; }
-  .partisan { width: 100%; height: auto; padding: 1.75em 0.5em 0.5em; text-align: center; background: rgba(190, 215, 48, 0.5); }
+  .partisan { width: 100%; height: auto; padding: 1.75em 0.5em 0.5em !important; text-align: center; background: rgba(255,255,255,0.85); }
   .partisan__bg { display: none; }
   .partisan__img { display: none; }
   .partisan__title { margin: 0; }

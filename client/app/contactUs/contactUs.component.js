@@ -12,7 +12,7 @@ export class ContactUsComponent {
       {
         type:'Secretary',
         profile:[{name:'M Vidyadhar', email:'m.vidyadhar95@gmail.com', phone:'9952044531'},
-        {name:'S Chandra vadan', email:'scvchandras@gmail.com', phone:'9884181579'}
+        {name:'S Chandra vadan', email:'scvchandras@gmail.com', phone:'7981487567'}
       ]},
       {
         type:'Joint Secretary',
@@ -25,7 +25,7 @@ export class ContactUsComponent {
       },
       {
         type:'Student Relations',
-        profile:[{name:'Naveen Kanna M',email:'naveenkanna28@gmail.com',phone:'9087295757'},
+        profile:[{name:'Naveen Kanna M',email:'naveenkanna28@gmail.com',phone:'8903940256'},
         {name:'T Sumanth Kalyan',email:'sumanth.kalyan79@gmail.com',phone:'9790465204'}]
       },
       {

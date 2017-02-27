@@ -1,8 +1,9 @@
 <section class="fullW thumbs_wrap" style="min-height:100vh;">
-	<div class="fullW paddingLR thumbs_wrap" style="margin-top:50px">
+	<div class="col-md-2 col-sm-1 col-xs-12"></div>
+	<div class="thumbs_wrap col-md-8 col-sm-10 col-xs-12" style="margin-top:60px">
 	  <md-card style="margin-top:10px">
-        <h2 class="md-headline colorg" style="padding:0px 10px">{{event.name}}</h2>
-        <div class="fullW thumbs_wrap bgImage" style="height:400px;background-image:url({{poster}});opacity:1"></div>
+        <h2 class="md-headline colorg" style="padding:0px 10px;margin:5px">{{event.name}}</h2>
+        <div class="fullW thumbs_wrap bgImage" style="height:350px;background-image:url({{poster}});opacity:1"></div>
         <md-card-content style="padding:0px 10px">
   				<md-tabs md-dynamic-height="" md-border-bottom="">
 				      <md-tab label="about">
@@ -50,14 +51,16 @@
 				      </md-tab>
 				      <md-tab label="Payment" ng-if="event.paylink.length">
 				        <md-content class="md-padding">
-				        	<label>This is a paid event.</label>
-				        	<md-button class="md-warn md-raised" ng-click="register()">
-				        		<a href="{{event.paylink}}" target="_blank" class="colorw">Click here to pay</a>
-				        	</md-button>
+				        	<label>This is a paid Workshop</label>
 				        	<div>
-				        		<b><a href="https://drive.google.com/file/d/0B_YugIP4ZNyhenJRbHdzYVl0M00/view?usp=sharing" target="_blank">Click here for Payment details</a></b>
-				        		<br/>
+				        		<b><u>Pay through DD or NEFT</u></br>
+				        		Account Name: BHANU MITRA BULUSU<br/>
+				        		Account number: 20176727333<br/>                        
+								SBI, IIT Madras Branch<br/>
+								IFSC: SBIN0001055<br/>
+								Mobile Number: 9087863231</b>
 				        	</div>
+				        	<!-- <md-button class="md-warn md-raised" ng-click="register()" ng-disabled="isRegistered">Register<span ng-show="isRegistered">ed</span></md-button> -->
 				        </md-content>
 				      </md-tab>
 				    </md-tabs>

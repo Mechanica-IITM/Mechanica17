@@ -10,6 +10,7 @@
   <div class="message message--replay hideInMobile" style="z-index:10;top:50vh;display:block">
     <a href="/game" style="text-decoration:none"><span ng-show="!$ctrl.isLoggedIn">Login</span><span ng-show="$ctrl.isLoggedIn">Click</span> to Play</a><br/>
     <p class="sizeten colorcr">Make high score in a week and win exciting prizes</p>
+    <div class="fullW centric"><a href="https://drive.google.com/file/d/0B_YugIP4ZNyhX29GRUpTUlJOblU/view?usp=sharing" style="font-weight:bold;color:white" target="_blank">Events Schedule</a></div>
   </div>
   <div style="top:40px;position:fixed" class="padding10 colorcr hideInMobile">
     <h3>High Scores</h3>
@@ -29,6 +30,7 @@
     <div class="fullW centric"><a href="/hospi" style="font-weight:bold;color:white">Hospitality</a></div>
     <div class="fullW centric"><a href="/contactUs" style="font-weight:bold;color:white">Contact Us</a></div>
     <div class="fullW centric"><a href="/sponsors" style="font-weight:bold;color:white">Sponsors</a></div>
+    <div class="fullW centric"><a href="https://drive.google.com/file/d/0B_YugIP4ZNyhX29GRUpTUlJOblU/view?usp=sharing" style="font-weight:bold;color:white" target="_blank">Events Schedule</a></div>
   </div>
   <div class="fullW fullH thumbs_wrap hideInMobile">
     <a href="/eventCategories">
@@ -57,14 +59,16 @@
     </a>
   </div>
 
-  <div class="partisan" style="padding:20px 7.5em 1em 8.5em;">
+  <div class="partisan" style="padding:20px 7.5em 1em 8.5em;z-index:10">
       <svg class="partisan__bg" viewBox="0 0 500 188" preserveAspectRatio="none" width="100%" height="100%" aria-hidden="true">
         <polygon points="0 154 123.39 0 235.78 14.79 365.6 28.9 436.24 114.93 500 188 0 188 0 154" fill="#fff"/>
         <polygon points="0 188 108.84 18.17 347.91 26.79 500 188 365.6 28.9 123.39 0 0 154 0 188" fill="#8a775b"/>
       </svg>
-      <div style="opacity:1;color:grey" class="thumbs_wrap">
-        <h5 class="fullW colorbl"><b>Register for Workshops now</b></h5>
-        <p ng-repeat="event in eventCategory.events"><a target="_blank" href="/event/{{event.event._id}}"><b>{{event.event.name}}</b></a></p>
+      <div style="opacity:1;color:grey" class="thumbs_wrap fullW valignOut">
+        <div class="fullW">
+          <h5 class="fullW colorbl"><b>Register for Workshops now</b></h5>
+          <p ng-repeat="event in eventCategory.events"><a target="_blank" href="/event/{{event.event._id}}"><b>{{event.event.name}}</b></a></p>
+        </div>
       </div>
   </div>
 
@@ -72,7 +76,7 @@
   <div style="position:fixed;left:10px;bottom:10px">
   </div>
 
-  <div style="position:fixed;right:10px;bottom:10px;z-index:10">
+  <div style="position:fixed;right:10px;bottom:10px;z-index:1">
       <a href="https://www.facebook.com/mechanica.iitm" target="_blank" class="cursorp"><img src="assets/images/fb_icon.png" height='40px'/></a>
       <!-- <a href="https://twitter.com/Mechanica_IITM" target="_blank" class="cursorp"><img src="assets/images/twitter_icon.png" height='34px'/></a> -->
     <img src="assets/images/mea.png" width="50px" />

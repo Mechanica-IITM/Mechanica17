@@ -203,6 +203,9 @@ color: #666;
 .bgdb{
     background-color: #465775 !important;
 }
+.bgcr{
+  background-color: rgb(214, 200, 102) !important;
+}
 
 /*font size*/
 .sizeten{
