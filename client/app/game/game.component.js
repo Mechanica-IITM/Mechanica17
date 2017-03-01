@@ -10,7 +10,7 @@ export class GameComponent {
   static $inject = ['$http','$scope','$location'];  
   constructor($http, $scope, $location) {
 
-    $http.get('/api/users/getHighScore')
+    $http.get('/api/users/get/highscores')
     .then(res =>{
       $scope.highscores = res.data;
     })

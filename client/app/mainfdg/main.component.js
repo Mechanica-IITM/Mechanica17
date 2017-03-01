@@ -29,7 +29,7 @@ export class MainController {
     });
     $scope.user = Auth.getCurrentUserSync();
 
-    $http.get('/api/users/get/highscores')
+    $http.get('/api/users/getHighScore')
     .then(res =>{
       $scope.highscores = res.data;
     })
@@ -533,13 +533,13 @@ export class MainController {
 
   }
 
-  $onInit() {
+  /*$onInit() {
     this.$http.get('/api/events')
       .then(response => {
         this.events = response.data;
         this.socket.syncUpdates('event', this.events);
       });
-  }
+  }*/
 
 
   // registerEvent(event)

@@ -15,7 +15,7 @@ router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.get('/:id', auth.hasRole('admin'), controller.show);
 router.post('/', controller.create);
 router.post('/setHighScore', auth.isAuthenticated(), controller.setHighScore);
-router.get('/getHighScore', controller.getHighScore);
+router.get('/get/highscores', controller.getHighScore);
 router.get('/setScoreZero', auth.hasRole('admin'), controller.setScoreZero);
 
 module.exports = router;

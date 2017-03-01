@@ -1,0 +1,282 @@
+
+body {
+  margin: 0;
+  font-family: 'Montserrat'; 
+  background: #d4c962;
+  background: linear-gradient(#d4c962, #f7aaaa);
+  background: linear-gradient(#d4c962, #f7aaaa);
+  float: left;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+}
+html{
+  float: left;
+  position: relative;
+  height: auto;
+  width: 100%;
+  overflow-x:hidden; 
+}
+.hider{
+  display: none;
+}
+video { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100vh;
+    width: auto;
+    height: auto;
+    z-index: 999;
+    transform: translateX(-50%) translateY(-50%);
+ background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;
+  background-size: cover;
+  transition: 1s opacity;
+}
+
+
+.thing-form {
+  margin: 20px 0;
+}
+
+#banner {
+  border-bottom: none;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+
+#banner h1 {
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.hero-unit {
+  position: relative;
+  padding: 30px 15px;
+  color: #F5F5F5;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  background: #4393B9;
+}
+
+.navbar-text {
+  margin-left: 15px;
+}
+
+#waitingAnim{
+  -webkit-animation: blinkingAnim 1s infinite; /* Chrome, Safari, Opera */ 
+  animation: blinkingAnim 1s infinite;
+}
+
+/* Chrome, Safari, Opera */ 
+@-webkit-keyframes blinkingAnim {
+    0%   {opacity:0}
+    50%  {opacity:1}
+    100%   {opacity:0}
+}
+
+/* Standard syntax */
+@keyframes element {
+     0%   {opacity:0}
+    50%  {opacity:1}
+    100%   {opacity:0}
+}
+
+.navIcon img{
+  width: 140px;
+  height: auto;
+  -webkit-animation: navIcon 4s linear infinite;
+  animation: navIcon 4s linear infinite;
+}
+
+@-webkit-keyframes navIcon{
+  0%{transform:rotate(0deg)}
+  50%{transform:rotate(180deg)}
+  100%{transform:rotate(360deg)}
+}
+@keyframes navIcon{
+  0%{transform:rotate(0deg)}
+  50%{transform:rotate(180deg)}
+  100%{transform:rotate(360deg)}
+}
+
+.navName{
+  position: absolute;
+  height: 100%;
+  color: black;
+  font-weight: bold;
+  top:0px;
+}
+
+.navIcon{
+  position: absolute !important;
+  z-index: 1000;
+  /*width: 100px;
+  height: 100px;
+  border: 2px dotted #d1b790;
+  border-radius: 50%;
+  animation: navIcon 2s ease infinite;*/
+}
+
+#navIconEvent{
+  top : 10%;
+  left : 15%;
+}
+#navIconSpons{
+  top : 45%;
+  left : 50px;
+}
+#navIconHospi{
+  top : 10%;
+  right: 15%;
+}
+#navIconContact{
+  top : 45%;
+  right: 50px;
+}
+
+.navbar-default .navbar-nav > li > a{
+  color: white;
+}
+.navbar-default .navbar-nav > li > a:hover{
+  color:#ddd;
+}
+
+@media only screen and (min-width: 992px) {
+  .hideInMobile{
+    display: block !important;
+  }
+  .showInMobile{
+    display: none;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .hideInMobile{
+    display: hide !important;
+  }
+  .showInMobile{
+    display: block;
+  }
+}
+
+
+
+
+
+
+/* Top Navigation Style */
+
+.meta {
+  font-size: 0.75em;
+  line-height: 1;
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  white-space: nowrap;
+  border-top: 1px solid #d1b790;
+}
+
+.meta::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: #d1b790;
+}
+
+.meta a {
+  display: block;
+  padding: 1em 1.35em;
+  border: 1px solid #d1b790;
+  border-top: 0;
+}
+
+.meta a:not(:last-child) {
+  border-right: 0;
+}
+
+.codrops-icon {
+  width: 4em;
+}
+
+.codrops-icon span {
+  display: none;
+}
+
+.codrops-icon::before {
+  font-family: 'codropsicons';
+  font-size: 1.15em;
+  font-weight: normal;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-transform: none;
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.codrops-icon--drop::before {
+  content: '\e001';
+  color: #09c;
+}
+
+.codrops-icon--prev::before {
+  content: '\e004';
+}
+
+
+/* Demo links */
+
+.demo-link {
+  font-family: 'Playfair Display';
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.demo-link--current {
+  color: #bba077;
+}
+
+@media screen and (max-width:40em) {
+  .meta {
+    right: 1em;
+  }
+  .demo-link {
+    -webkit-flex: 1;
+    flex: 1;
+  }
+}
+
+/* Styles for sponsor */
+body #cdawrap { top: auto; right: auto; bottom: 12px; left: 12px; border: 1px solid #d1b790; background: none; }
+.partisan { position: absolute; bottom: 0; left: 0; width: 38em; padding: 4.5em 7.5em 1.5em 5.5em; }
+.partisan__bg { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.5; }
+.partisan__link { position: relative; display: -webkit-flex; display: flex; -webkit-justify-content: center; justify-content: center; -webkit-align-items: center; align-items: center; }
+.partisan__img, .partisan__title { opacity: 0.85; -webkit-transition: opacity 0.1s; transition: opacity 0.1s; }
+.partisan__link:hover .partisan__img, .partisan__link:hover .partisan__title { opacity: 1; }
+.partisan__img { max-width: 42%; }
+.partisan__title { font-family: 'Playfair Display'; font-weight: bold; position: relative; margin: 0.5em 0 0 0.85em; color: #555d27; }
+.partisan__title::before { content: 'Sponsored by:'; font-size: 0.5em; font-weight: bold; position: absolute; bottom: 100%; left: 0; padding: 0 0 1em 0; letter-spacing: 0.25em; text-transform: uppercase; color: #95a534; }
+@media screen and (max-width:80em) {
+  .partisan { font-size: 76%; }
+  .partisan__title::before { font-size: 0.25em; }
+}
+@media screen and (max-width:60em) {
+  .game-holder .message--instructions { bottom: 5.5em; }
+  .partisan { width: 100%; height: auto; padding: 1.75em 0.5em 0.5em !important; text-align: center; background: rgba(255,255,255,0.85); }
+  .partisan__bg { display: none; }
+  .partisan__img { display: none; }
+  .partisan__title { margin: 0; }
+  .partisan__title::before { width: 100%; padding: 0 0 0.25em; }
+}
