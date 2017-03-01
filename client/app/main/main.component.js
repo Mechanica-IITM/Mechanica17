@@ -533,13 +533,13 @@ export class MainController {
 
   }
 
-  $onInit() {
+  /*$onInit() {
     this.$http.get('/api/events')
       .then(response => {
         this.events = response.data;
         this.socket.syncUpdates('event', this.events);
       });
-  }
+  }*/
 
 
   // registerEvent(event)

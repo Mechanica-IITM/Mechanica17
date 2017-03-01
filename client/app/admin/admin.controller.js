@@ -2,7 +2,7 @@
 
 export default class AdminController {
   /*@ngInject*/
-  constructor(User, $http, $scope, $interval) {
+  constructor(User, $http, $scope, $interval, $location) {
     // Use the User $resource to fetch all users
     this.users = User.query();
     $scope.populateTeams = function(){
@@ -113,6 +113,29 @@ export default class AdminController {
       else
         alert('Please Check the form');
     };
+
+    $scope.genExcel=function(id){
+      $http.get('/api/events/getRegisteredUsers/'+id)
+      .then(response => {
+        console.log("participants");
+        $scope.getRegisteredUsers = response.data;
+
+        $http.post('/api/events/genExcel/'+id,$scope.getRegisteredUsers
+        ).then(function(response){
+          console.log(response.data);
+          var path = 'excel/' + response.data;
+          window.open(path, '_blank')
+        }).catch(function(err){
+          console.log(err);
+        })
+      })
+      .catch(function(err){
+        console.log(err);
+      });
+    
+
+      
+    }
 
     $scope.editEvent = function(event){
       $scope.event = event;

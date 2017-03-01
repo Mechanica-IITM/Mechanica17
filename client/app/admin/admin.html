@@ -260,7 +260,7 @@
       <span>{{eventCategory.name}}</span> - <a href="#" ng-click="editEventCategory(eventCategory)">Edit</a>
       <p ng-repeat="event in eventCategory.events" class="colorlg">
         <a href="/event/{{event.event._id}}">{{event.event.name}} ({{event.event.registered.length}})</a> - <a href="#" ng-click="editEvent(event.event)">Edit</a>
-
+        <a href="#" ng-click="genExcel(event.event._id)">Export</a>
       </p>
     </div>
   </div>

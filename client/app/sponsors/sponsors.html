@@ -1,7 +1,15 @@
-<section class="fullW thumbs_wrap" style="min-height:100vh;">
+<section class="fullW thumbs_wrap bgw fullH" style="min-height:100vh;">
 	<div class="fullW paddingLR thumbs_wrap" style="margin-top:50px">
-		<h2 class="centric colorbl centric">Sponsors</h2>
-		<p class="centric colorg">Will be updated soon</p>
+	  <h2 class="centric colorbl centric">Sponsors</h2>
+	  <hr/>
+	  <div class="fullW thumbs_wrap" ng-repeat="spon in spons" style="border-bottom:1px solid #eddaaf;margin-bottom:20px;padding-bottom:10px">
+	    <h3 class="centric colorg">{{spon.title}}</h3>
+	    <div class="fullW valignOut thumbs_wrap" ng-if="spon.num">
+	    	<img src="assets/spons/{{spon.title}} {{index}}.jpg" style="margin:0px 20px" width="250px" ng-repeat="index in spon.num"/>
+	    </div>
+	    <div ng-if="!spon.num" class="fullW valignOut">
+	    	<img src="assets/spons/{{spon.title}}.jpg" style="margin:0px 20px" width="250px"/>
+	    </div>
+	  </div>
 	</div>
-	<!--Add sponsors here-->
-<section>
+</section>

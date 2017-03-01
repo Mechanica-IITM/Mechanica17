@@ -61,6 +61,19 @@ UserSchema
     };
   });
 
+UserSchema
+  .virtual('profileDetails')
+  .get(function() {
+    return {
+      name: this.name,
+      email:this.email,
+      college:this.college,
+      phoneNumber:this.phoneNumber
+
+      
+    };
+  });
+
 // Non-sensitive info we'll be putting in the token
 UserSchema
   .virtual('token')

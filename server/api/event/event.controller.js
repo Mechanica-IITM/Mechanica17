@@ -12,8 +12,11 @@
 
 import jsonpatch from 'fast-json-patch';
 import validator from 'validator';
+import mongoXlsx from 'mongo-xlsx';
 import Event from './event.model';
+import User from '../user/user.model';
 import EventCategory from '../eventCategory/eventCategory.model';
+import path from 'path';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -126,6 +129,63 @@ export function create(req, res) {
     .catch(handleError(res));
 }
 
+// Gets all registered users for an Event in the DB
+export function getRegisteredUsers(req, res) {
+  return Event.findById(req.params.id)
+    .then(event=>{
+      var registered=[]
+      for (var i = 0; i <= event.registered.length - 1; i++) {
+        registered.push(event.registered[i].user)
+      }
+      console.log(registered)
+      User.find({_id:{$in:registered}},'name email college phoneNumber')
+      .exec()
+      .then(handleEntityNotFound(res))
+      .then(users=>{
+        
+        return res.status(201).send(users)  
+      
+      })
+      .catch(handleError(res));
+    })
+    .catch(handleError(res));
+}
+// Exports list of registered users of an event
+export function convertToExcel(req, res) {
+  if(!validator.isMongoId(req.params.id+''))
+    return res.status(400).send("Invalid Id");
+  var model=[
+  {
+    "displayName": "Name",
+    "access": "name",
+    "type": "string"
+  },
+  {
+    "displayName": "Email address",
+    "access": "email",
+    "type": "string"
+  },
+  {
+    "displayName": "College name",
+    "access": "college",
+    "type": "string"
+  },]
+
+
+  return Event.findById(req.params.id).exec()
+    .then(event=>{
+      var data = req.body;
+
+      // Generate Excel 
+      mongoXlsx.mongoData2Xlsx(data, model, function(err, data) {
+        console.log('File saved at:', data.fullPath);
+
+        // return res.status(201).send(data)
+        return res.json(data.fullPath);
+      })
+    })
+    .catch(handleError(res));
+}
 // Upserts the given Event in the DB at the specified ID
 export function upsert(req, res) {
   if(req.body._id) {
@@ -175,7 +235,18 @@ export function register (req, res){
   return Event.findById(req.params.id)
   .exec()
   .then( event =>{
-    event.registered.push({user:req.user._id});
+    var isRegistered = false;
+    for(var i=0;i<event.registered.length;++i)
+      if(event.registered[i].user.equals(req.user._id))
+      {
+        isRegistered = true;
+        console.log('already registered');
+        break;
+      }
+
+    if(!isRegistered)
+      event.registered.push({user:req.user._id});
+    
     event.save()
     .then(respondWithResult(res))
     .catch(handleError(res));
