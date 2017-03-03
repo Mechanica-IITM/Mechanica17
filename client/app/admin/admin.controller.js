@@ -117,7 +117,6 @@ export default class AdminController {
     $scope.genExcel=function(id){
       $http.get('/api/events/getRegisteredUsers/'+id)
       .then(response => {
-        console.log("participants");
         $scope.getRegisteredUsers = response.data;
 
         $http.post('/api/events/genExcel/'+id,$scope.getRegisteredUsers

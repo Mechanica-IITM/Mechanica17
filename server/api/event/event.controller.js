@@ -133,16 +133,16 @@ export function create(req, res) {
 export function getRegisteredUsers(req, res) {
   return Event.findById(req.params.id)
     .then(event=>{
-      var registered=[]
-      for (var i = 0; i <= event.registered.length - 1; i++) {
-        registered.push(event.registered[i].user)
-      }
-      console.log(registered)
+      var registered = []
+      
+      for (var i = 0; i < event.registered.length; ++i) 
+          registered.push(event.registered[i].user+'')
+
       User.find({_id:{$in:registered}},'name email college phoneNumber')
       .exec()
       .then(handleEntityNotFound(res))
       .then(users=>{
-        
+        console.log(users.length, 55555555);
         return res.status(201).send(users)  
       
       })
